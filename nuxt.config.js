@@ -72,7 +72,8 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+	baseURL: "https://nomansskylocations-9e8b5.firebaseio.com/",
+	widthCredentials: false
   },
 
   /*
