@@ -19,12 +19,34 @@ export const mutations = {
 
 	registerError(state, error) {
 		if(error.response.request.response.includes('EMAIL_EXISTS')) {
-			[...document.querySelectorAll('.email')].forEach(el => {
-				el.classList.add('input-error-email');
-				setTimeout(() => {
-					el.classList.remove('input-error-email');
-				}, 7000)
-			})
+			let createMessage = ($message, $elementToAppendTo) => {
+				let self = this;
+				let wrapper = document.createElement('div');
+				wrapper.classList.add('nms-message');
+				wrapper.style.transition = 'all .3s ease-in-out';
+		  
+				let message = document.createTextNode($message);
+		  
+				wrapper.appendChild(message);
+		  
+				fadeIn(wrapper);
+				$elementToAppendTo.appendChild(wrapper);
+				setTimeout(() => {fadeOut(wrapper)}, 5000);
+			  }
+		  
+			  // FADE IN AN ELEMENT
+			  let fadeIn = ($el) => {	
+				  $el.classList.add('fade-in');
+			  }
+		  
+			  // FADEOUT AN ELEMENT
+			  let fadeOut =($el) => {	
+				  $el.classList.add('fade-out');
+				  $el.classList.remove('fade-in');
+				  setTimeout(() => {$el.parentNode.removeChild($el)}, 1000);
+			  }
+
+			createMessage("An account with this email already exists", document.querySelector('.email'))
 		}
 	}
 }

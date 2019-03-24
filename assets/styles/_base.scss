@@ -245,6 +245,16 @@ h6 {
   }
 }
 
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 @-webkit-keyframes sk-foldCubeAngle {
 
   0%,
@@ -291,6 +301,14 @@ h6 {
     transform: perspective(140px) rotateY(180deg);
     opacity: 0;
   }
+}
+
+.fade-in {
+	animation: appear .5s ease-in-out forwards;
+}
+
+.fade-out {
+	animation: disappear .5s ease-in-out forwards;
 }
 
 
@@ -349,27 +367,11 @@ h6 {
   }
 }
 
-@mixin input-error-message($message) {
-	position: relative;	
-
-	input {
-		border: 1px solid $red !important;
-		box-sizing: border-box;
-		border-radius: .5rem;
-	}
-
-	&:after{
-		content: $message;
-		opacity: 1;
-		visibility: visible;
-	}
-}
-
 /*
   * Buttons
   * * * * * */
 .button {
-  @include dv-button($color:#FFF, $background: $black);
+  @include dv-button($color: #FFF, $background: $black);
 
   &.red {
     @include dv-button($color: #FFF, $background: $red);
@@ -380,32 +382,40 @@ h6 {
   }
 
   &.green {
-	  @include dv-button($color: #FFF, $background: $green);
+    @include dv-button($color: #FFF, $background: $green);
   }
 }
 
 .inline-button {
-	display: inline-block !important;
+  display: inline-block !important;
 }
 
 /*
   * Form styling
   * * * * * */
-  .form-control.input-error-password {
-	  @include input-error-message($message: "Must match and be more than 5 characters");
-  }
+.form-control {
+  position: relative;
+}
 
-  .form-control.input-error-email {
-	  @include input-error-message($message: "Email already exists");
-  }
+.nms-message {
+  position: absolute;
+  font-size: 1rem;
+  top: -5px;
+  color: #FFF;
+  background-color: $red;
+  width: 100%;
+  border-radius: .5rem .5rem 0 0;
+  padding: 0 .5rem;
+  box-sizing: border-box;
+}
 
-  /*
+/*
   * Floating
   * * * * * */
-  .float-right {
-	  float: right;
-  }
+.float-right {
+  float: right;
+}
 
-  .float-left {
-	  float: left;
-  }
+.float-left {
+  float: left;
+}

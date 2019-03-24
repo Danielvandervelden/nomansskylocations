@@ -29,10 +29,7 @@
 					this.$store.dispatch('register/registerUser', this.user);
 				} else {
 					[...document.querySelectorAll('.password')].forEach(el => {
-						el.classList.add('input-error-password');
-						setTimeout(() => {
-							el.classList.remove('input-error-password');
-						}, 7000)
+						this.createMessage("Passwords need to match and be more than 5 characters", el);
 					})
 				}
 			}

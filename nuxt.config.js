@@ -57,6 +57,7 @@ module.exports = {
    */
   plugins: [
 	{ src: '~plugins/GlobalComponents.js' },
+	{ src: '~plugins/GlobalFunctions.js' }
   ],
 
   /*
