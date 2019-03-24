@@ -1,5 +1,5 @@
 export default ({store, redirect}) => {
-	if(!store.getters['login/isLoggedIn']) {
-		return redirect('/register');
+	if(store.getters['login/isLoggedIn'] === null) {
+		return redirect('/login');
 	}
 }

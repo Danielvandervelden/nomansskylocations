@@ -1,15 +1,15 @@
 /*
-/* State module for portfolio
+/* State module for logging in
 /*_______________________________________________________*/
 
 
 export const state = () => ({
-	loggedIn: true
+	token: null
 })
 
 export const getters = {
 	isLoggedIn: state => {
-		return state.loggedIn;
+		return state.token;
 	}
 }
 

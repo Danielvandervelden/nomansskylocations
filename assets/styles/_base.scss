@@ -341,11 +341,28 @@ h6 {
   display: $display;
   cursor: pointer;
   text-align: center;
+  font-family: "Work Sans";
 
   &:hover {
     background-color: lighten($background, 15%);
     border: 1px solid lighten($background, 15%);
   }
+}
+
+@mixin input-error-message($message) {
+	position: relative;	
+
+	input {
+		border: 1px solid $red !important;
+		box-sizing: border-box;
+		border-radius: .5rem;
+	}
+
+	&:after{
+		content: $message;
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 /*
@@ -366,3 +383,29 @@ h6 {
 	  @include dv-button($color: #FFF, $background: $green);
   }
 }
+
+.inline-button {
+	display: inline-block !important;
+}
+
+/*
+  * Form styling
+  * * * * * */
+  .form-control.input-error-password {
+	  @include input-error-message($message: "Must match and be more than 5 characters");
+  }
+
+  .form-control.input-error-email {
+	  @include input-error-message($message: "Email already exists");
+  }
+
+  /*
+  * Floating
+  * * * * * */
+  .float-right {
+	  float: right;
+  }
+
+  .float-left {
+	  float: left;
+  }

@@ -87,6 +87,11 @@ module.exports = {
 
     }
   },
+
+  env: {
+	firebaseApiKey: 'AIzaSyAN9bbnQNSrEwke_9xycqPx5j-9L-9gCoI'
+  },
+
   transition: {
     name: 'fade',
     mode: 'out-in'

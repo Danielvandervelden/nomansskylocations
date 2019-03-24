@@ -32,6 +32,23 @@
 
 	.form-control {
 		margin: 1.5rem 0;
+		transition: all .3s ease-in-out;
+
+		&:after{
+			content: '';
+			font-size: 1rem;
+			opacity: 0;
+			visibility: hidden;
+			transition: all .3s ease-in-out;
+			position: absolute;
+			top: -.5rem;
+			left: 0;
+			padding: 0 .5rem;
+			box-sizing: border-box;
+			width: 100%;
+			background-color: $red;
+			color: #FFF;
+		}
 	}
 
 	label {
@@ -45,11 +62,13 @@
 		background-color: transparent;
 		width: 100%;
 		box-sizing: border-box;
+		border-style: none;
+		border: 1px solid $grey;
 
 		&:active,
 		&:focus {
 			outline: 0;
-			border: 1px solid $grey;
+			border: 1px solid $green;
 		}
 	}
 
