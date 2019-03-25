@@ -19,34 +19,9 @@ export const mutations = {
 
 	registerError(state, error) {
 		if(error.response.request.response.includes('EMAIL_EXISTS')) {
-			let createMessage = ($message, $elementToAppendTo) => {
-				let self = this;
-				let wrapper = document.createElement('div');
-				wrapper.classList.add('nms-message');
-				wrapper.style.transition = 'all .3s ease-in-out';
-		  
-				let message = document.createTextNode($message);
-		  
-				wrapper.appendChild(message);
-		  
-				fadeIn(wrapper);
-				$elementToAppendTo.appendChild(wrapper);
-				setTimeout(() => {fadeOut(wrapper)}, 5000);
-			  }
-		  
-			  // FADE IN AN ELEMENT
-			  let fadeIn = ($el) => {	
-				  $el.classList.add('fade-in');
-			  }
-		  
-			  // FADEOUT AN ELEMENT
-			  let fadeOut =($el) => {	
-				  $el.classList.add('fade-out');
-				  $el.classList.remove('fade-in');
-				  setTimeout(() => {$el.parentNode.removeChild($el)}, 1000);
-			  }
-
-			createMessage("An account with this email already exists", document.querySelector('.email'))
+			[...document.querySelectorAll('.email')].forEach(el => {
+				this._vm.createMessage("An account with this email already exists", el)
+			})
 		}
 	}
 }
@@ -60,9 +35,26 @@ export const actions = {
 		})
 		.then(res => {
 			context.commit('registerUser');
+			context.dispatch('storeUserInDatabase', [{user: user, res: res}]);
 		})
 		.catch(error => {
 			context.commit('registerError', error);
+		})
+	},
+
+	storeUserInDatabase(context, [{user, res}]) {
+		console.log(user, res);
+		this.$axios.$put('users.json', {
+			[res.localId]: {
+				email: res.email,
+				display_name: user.displayName
+			}
+		})
+		.then(res => {
+			console.log(res);
+		})
+		.catch(error => {
+			console.log(error.response);
 		})
 	}
 }

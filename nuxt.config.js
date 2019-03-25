@@ -66,8 +66,17 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+	'@nuxtjs/pwa',
+	'@nuxtjs/style-resources',
+	'cookie-universal-nuxt'
   ],
+
+  /*
+   ** Global SCSS loader
+   */
+  styleResources: {
+	scss: ['~assets/styles/_base.scss']
+  },
 
   /*
    ** Axios module configuration

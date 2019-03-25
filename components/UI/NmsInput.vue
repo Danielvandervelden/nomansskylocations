@@ -28,7 +28,6 @@
 	}
 </script>
 <style scoped lang='scss'>
-	@import '~assets/styles/_base.scss';
 
 	.form-control {
 		margin: 1.5rem 0;
