@@ -65,7 +65,7 @@ export const actions = {
 			context.dispatch('fetchUserMeta', userToLogin);
 		})
 		.catch(error => {
-			console.log(error.response, error, 'fuck me');
+			console.log(error.response, error);
 		})
 	}
 }
