@@ -5,7 +5,6 @@ Vue.mixin({
 
 	// METHOD FOR DISPLAYING A QUICK MESSAGE
     createMessage($message, $elementToAppendTo) {
-	console.log($elementToAppendTo);
       let self = this;
       let wrapper = document.createElement('div');
       wrapper.classList.add('nms-message');

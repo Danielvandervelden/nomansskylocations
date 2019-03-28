@@ -58,7 +58,8 @@ module.exports = {
   plugins: [
 	{ src: '~plugins/GlobalComponents.js' },
 	{ src: '~plugins/GlobalFunctions.js' },
-	{ src: '~plugins/filters.js' }
+	{ src: '~plugins/filters.js' },
+	{ src: '~plugins/database/firebase.js' }
   ],
 
   /*
@@ -87,16 +88,30 @@ module.exports = {
 	widthCredentials: false
   },
 
-  router: {
-	  middleware: [
-		  'serverSideCookieCheck'
-	  ]
-  },
-
   /*
    ** Build configuration
    */
   build: {
+	publicPath: '/public/',
+	extractCSS: true,
+	babel: {
+		presets: [
+			["@babel/preset-env", {
+				useBuiltIns: 'usage',
+				corejs: '3.0.0',
+				targets: {
+					ie: 11,
+					browsers: 'last 2 versions'
+				}
+			}],
+		],
+		plugins: [
+			["@babel/plugin-syntax-dynamic-import"],
+			["@babel/plugin-transform-runtime", {
+				"regenerator": true
+			}]
+		]
+	},
   	/*
   	 ** You can extend webpack config here
   	 */

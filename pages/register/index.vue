@@ -26,33 +26,7 @@
 		},
 		methods: {
 			registerUser() {
-				// first check if the displayname isn't taken..
-				this.$axios.$get('users.json')
-				.then(res => {
-					
-					let takenNames = [];
-					console.log(res);
-					// if passwords don't match AND it isn't less than 5 characters AND the displayname isn't taken.
-					if(this.user.password === this.user.confirmedPassword && this.user.password.length >= 6 && !takenNames.includes(this.user.displayName)) {
-						this.$store.dispatch('register/registerUser', this.user);
-					}
-					
-					if(takenNames.includes(this.user.displayName)) {
-						[...document.querySelectorAll('.display-name')].forEach(el => {
-							this.createMessage("This display name is already taken.", el);
-						})
-					} 
-					if(this.user.password !== this.user.confirmedPassword) {
-						[...document.querySelectorAll('.password')].forEach(el => {
-							this.createMessage("Passwords need to match.", el);
-						})
-					} else if(this.user.password.length < 6) {
-						[...document.querySelectorAll('.password')].forEach(el => {
-							this.createMessage("Passwords needs to be more than 5 characters.", el);
-						})
-					}
-				})
-				.catch(error => {console.log(error.response)})
+				this.$store.dispatch('register/registerUser', this.user);
 			}
 		}
 	}

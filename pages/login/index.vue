@@ -23,7 +23,7 @@
 		},
 		methods: {
 			loginUser() {
-				this.$store.dispatch('login/loginUser', this.user);
+				
 			}
 		}
 	}
