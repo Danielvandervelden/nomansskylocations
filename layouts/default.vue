@@ -14,8 +14,8 @@
 <script>
 export default {
 	created() {
-		if(this.$store.getters['login/isLoggedIn'] == null) {
-			this.$store.dispatch('login/initAuth');
+		if(this.$store.getters['users/login/isLoggedIn'] == null) {
+			this.$store.dispatch('users/login/initAuth');
 		}
 	}
 }

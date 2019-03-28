@@ -26,7 +26,7 @@
 		},
 		methods: {
 			registerUser() {
-				this.$store.dispatch('register/registerUser', this.user);
+				this.$store.dispatch('users/register/registerUser', this.user);
 			}
 		}
 	}

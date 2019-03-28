@@ -15,11 +15,11 @@ export default {
   },
   computed: {
 	  getDisplayName() {
-		  return this.$store.getters['login/getDisplayName'];
+		  return this.$store.getters['users/login/getDisplayName'];
 	  },
 
 	  isLoggedIn() {
-		  return this.$store.getters['login/isLoggedIn'];
+		  return this.$store.getters['users/login/isLoggedIn'];
 	  }
   }
 }

@@ -12,7 +12,7 @@
 			}
 		},
 		created() {
-			this.$store.dispatch('login/checkIfLoggedIn');
+			this.$store.dispatch('users/login/checkIfLoggedIn');
 		},
 	}
 </script>
