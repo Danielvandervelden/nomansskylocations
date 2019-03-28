@@ -26,8 +26,9 @@
 </script>
 <style scoped lang='scss'>
 	.nms__new-post {
+		padding: 2rem 0;
+
 		&--container {
-			margin: 1.5rem 0;
 			padding: 3rem;
 			box-sizing: border-box;
 			@include faded-bg();
