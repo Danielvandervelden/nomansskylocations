@@ -5,34 +5,47 @@
 
 export const state = () => ({
 	token: null,
-	display_name: ''
+	display_name: null
 })
 
 export const getters = {
 	isLoggedIn: state => {
 		return state.token;
+	},
+	getDisplayName: state => {
+		return state.display_name;
 	}
 }
 
 export const mutations = {
 	loginUser(state, user) {
-		state.token = user.idToken;
+		if(user.idToken) {
+			state.token = user.idToken;
+		} else if(user.id_token) {
+			state.token = user.id_token;
+		}
+
 		state.display_name = user.displayName;
-		let expiresDays = ((3600 / 60) / 60) / 24;
+
+		console.log(state);
+
+		let expiresSeconds =  user.expiresIn;
+		let cookie = {
+			display_name: user.displayName,
+			token: user.idToken,
+			refresh: user.refreshToken
+		}
 
 		if(this.$cookies.get('user') == undefined) {
-			this._vm.setCookie('user', {
-				display_name: user.displayName,
-				token: user.idToken,
-				refresh: user.refreshToken
-			}, expiresDays)
+			this.$cookies.set('user', cookie, {path: '/', maxAge: expiresSeconds})
 		}
+
+		this.$router.push('/');
 	},
 }
 
 export const actions = {
 	loginUser(context, user) {
-		console.log(user);
 		this.$axios.$post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAN9bbnQNSrEwke_9xycqPx5j-9L-9gCoI', {
 			email: user.email,
 			password: user.password,
@@ -48,24 +61,16 @@ export const actions = {
 		let user_to_login = {...user}
 		this.$axios.get('users.json')
 		.then(res => {
-			user_to_login.displayName = res.data[user.localId].display_name;
-			context.commit('loginUser', user_to_login);
+			if(user.localId) {
+				user_to_login.displayName = res.data[user.localId].display_name;
+				context.commit('loginUser', user_to_login);
+			} else if(user.user_id) {
+				user_to_login.displayName = res.data[user.user_id].display_name;
+				context.commit('loginUser', user_to_login);
+			} else {
+				console.log("something went wrong, there is not localId or user_id on the object.")
+			}
 		})
 		.catch(error => console.log(error, error.reponse))
 	},
-
-	checkLegitimateUser(context, user) {
-		this.$axios.$post('https://securetoken.googleapis.com/v1/token?key=AIzaSyAN9bbnQNSrEwke_9xycqPx5j-9L-9gCoI', {
-			grant_type: "refresh_token",
-			refresh_token: user.refresh
-		})
-		.then(res => {
-			let userToLogin = {};
-			userToLogin.localId = res.user_id;
-			context.dispatch('fetchUserMeta', userToLogin);
-		})
-		.catch(error => {
-			console.log(error.response, error);
-		})
-	}
 }

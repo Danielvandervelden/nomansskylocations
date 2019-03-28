@@ -57,7 +57,8 @@ module.exports = {
    */
   plugins: [
 	{ src: '~plugins/GlobalComponents.js' },
-	{ src: '~plugins/GlobalFunctions.js' }
+	{ src: '~plugins/GlobalFunctions.js' },
+	{ src: '~plugins/filters.js' }
   ],
 
   /*
@@ -86,24 +87,30 @@ module.exports = {
 	widthCredentials: false
   },
 
+  router: {
+	  middleware: [
+		  'serverSideCookieCheck'
+	  ]
+  },
+
   /*
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {
+  	/*
+  	 ** You can extend webpack config here
+  	 */
+  	extend(config, ctx) {
 
-    }
+  	}
   },
 
   env: {
-	firebaseApiKey: 'AIzaSyAN9bbnQNSrEwke_9xycqPx5j-9L-9gCoI'
-  },
+  		firebaseApiKey: 'AIzaSyAN9bbnQNSrEwke_9xycqPx5j-9L-9gCoI'
+  	},
 
-  transition: {
-    name: 'fade',
-    mode: 'out-in'
+  	transition: {
+  		name: 'fade',
+  		mode: 'out-in'
+  	}
   }
-}
