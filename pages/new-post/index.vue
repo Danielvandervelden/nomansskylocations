@@ -8,10 +8,12 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
-		middleware: 'isLoggedIn'
+		created() {
+			this.$store.dispatch('login/checkIfLoggedIn');
+		},
 	}
 </script>
 <style scoped lang='scss'>

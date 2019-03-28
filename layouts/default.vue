@@ -11,6 +11,17 @@
   </div>
 </template>
 
+<script>
+export default {
+	created() {
+		if(this.$store.getters['login/isLoggedIn'] == null) {
+			this.$store.dispatch('login/initAuth');
+		}
+	}
+}
+</script>
+
+
 <style lang="scss">
 
 	.nms-container {
