@@ -1,5 +1,5 @@
 <template>
-  <div class="nms-container">
+  <div>
   	<div class="title-wrapper">
   		<h1>NO MANS SKY LOCATIONS</h1>
   	</div>

@@ -1,5 +1,5 @@
 <template>
- <div class="nms-web__wrapper">
+ <div class="nms-container">
 	 <nuxt />
  </div>
 </template>
@@ -29,7 +29,7 @@ export default {
 		&__wrapper {
 			max-width: 600px;
 			margin: 0 auto;
-			background-color: rgba(255, 255, 255, .7);
+			@include faded-bg();
 			padding: 1.5rem;
 			box-sizing: border-box;
 			transition: all .3s ease-in-out;

@@ -1,5 +1,5 @@
 <template>
-	<div class="nms-container">
+	<div>
 		<div class="title-wrapper">
 			<h1>NO MANS SKY LOCATIONS</h1>
 		</div>
@@ -36,17 +36,17 @@
 	}
 </script>
 <style scoped lang='scss'>
-.title-wrapper {
-	margin-bottom: 5rem;
 
-	h1 {
-		color: #FFF;
-		font-size: 6rem;
+	.title-wrapper {
+			margin-bottom: 5rem;
+
+			h1 {
+				color: #FFF;
+				font-size: 6rem;
+				text-align: center;
+			}
+		}
+	h4 {
 		text-align: center;
 	}
-}
-
-h4 {
-	text-align: center;
-}
 </style>
