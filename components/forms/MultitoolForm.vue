@@ -1,8 +1,8 @@
 <template>
 	<form class="nms__form-multitool">
-		<nms-select :options="type"></nms-select>
-		<nms-select :options="rank"></nms-select>
-		<nms-select :options="slots"></nms-select>		
+		<nms-select label="What type of Multitool?" :options="type"></nms-select>
+		<nms-select label="What class?" :options="rank"></nms-select>
+		<nms-select label="How many slots?" :options="slots"></nms-select>		
 	</form>
 </template>
 
@@ -18,7 +18,9 @@
 					type: '',
 					rank: '',
 					slots: '',
-					galaxy: ''
+					galaxy: '',
+					glyphs: '',
+					location: ''
 				}
 			}
 		}

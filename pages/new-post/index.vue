@@ -3,6 +3,7 @@
 		<div class="nms__new-post--container">
 			<h1 class="nms__new-post--title">Create a new post</h1>
 			<nms-select class="nms__new-post--search-select" v-model="selected" :options="options">What would you like to post?</nms-select>
+			<galaxy-select v-if="selected !== null"></galaxy-select>
 			<multitool-form v-if="selected == 'Multitools'"></multitool-form>
 			<ship-form v-if="selected == 'Ships'"></ship-form>
 			<planet-form v-if="selected == 'Planets'"></planet-form>
@@ -15,12 +16,14 @@
 	import PlanetForm from '@/components/forms/PlanetForm.vue';
 	import MultitoolForm from '@/components/forms/MultitoolForm.vue';
 	import ShipForm from '@/components/forms/ShipForm.vue';
+	import GalaxySelect from '@/components/UI/Selects/GalaxySelect.vue';
 
 	export default {
 		components: {
 			'planet-form': PlanetForm,
 			'multitool-form': MultitoolForm,
-			'ship-form': ShipForm
+			'ship-form': ShipForm,
+			'galaxy-select': GalaxySelect
 		},
 		data() {
 			return {

@@ -26,6 +26,11 @@
 </script>
 <style scoped lang='scss'>
 
+	label {
+		margin-bottom: .5rem;
+		display: block;
+	}
+
 	.select-wrapper {
 		position: relative;
 		display: inline-block;
@@ -47,6 +52,12 @@
 		padding: 1.2rem;
 		border-radius: .8rem;
 		width: 100%;
+		outline: 0;
+		
+		&:focus,
+		&:active {
+			outline: 0;
+		}
 	}
 
 	select:-moz-focusring {
