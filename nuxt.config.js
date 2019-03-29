@@ -58,7 +58,7 @@ module.exports = {
   plugins: [
 	{ src: '~plugins/GlobalComponents.js' },
 	{ src: '~plugins/GlobalFunctions.js' },
-	{ src: '~plugins/filters.js' },
+	{ src: '~plugins/GlobalFilters.js' },
 	{ src: '~plugins/database/firebase.js' }
   ],
 

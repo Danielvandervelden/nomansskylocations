@@ -413,6 +413,12 @@ h6 {
   box-sizing: border-box;
 }
 
+form {
+	.form-group {
+		margin-bottom: 1.5rem;
+	}
+}
+
 /*
   * Floating
   * * * * * */
