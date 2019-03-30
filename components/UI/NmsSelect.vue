@@ -7,11 +7,11 @@
 		</select>
 		<div :id="name" @click="activateDropdown($event)" class="nms-select">
 			<div class="nms-selected"><span><slot></slot></span></div>
-			<div class="nms-select__options--wrapper">
-				<input class="nms-select__option" v-if="search" id="dropdown-filter" type="text" @input="filterDropdown($event)" />
-				<div class="nms-select__options">
-					<div :data-option="index" v-for="(option, index) in options" :key="option" class="nms-select__option">{{option}}</div>
+			<div class="nms-select__options">
+				<div class="dropdown-filter-wrapper">
+					<input id="dropdown-filter" v-if="search" type="text" @input="filterDropdown($event)" />
 				</div>
+				<div :data-option="index" v-for="(option, index) in options" :key="option" class="nms-select__option">{{option}}</div>
 			</div>
 		</div>
 	</div>
@@ -92,7 +92,7 @@
 			}
 		}
 
-		&__options--wrapper {
+		&__options {
 			position: absolute;
 			z-index: 10;
 			top: 5rem;
@@ -107,12 +107,12 @@
 
 			#dropdown-filter {
 				width: 97%;
-				height: 5rem;
+				padding: 18px;
 				margin: 0 auto;
 				display: block;
 				border: 1px solid #c9c9c9;
 				box-sizing: border-box;
-				margin-top: 1rem;
+				margin-bottom: 1.5rem;
 			}
 		}
 
@@ -153,7 +153,7 @@
 			}
 		}
 
-		.nms-select__options--wrapper {
+		.nms-select__options {
 			max-height: 300px;
 			overflow: auto;
 		}
