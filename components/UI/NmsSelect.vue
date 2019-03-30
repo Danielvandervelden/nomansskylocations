@@ -124,7 +124,6 @@
 
 			&:nth-child(1) {
 				border-top: 1px solid #e9e9e9;
-				margin-top: 4rem;
 			}
 
 			&:hover {
