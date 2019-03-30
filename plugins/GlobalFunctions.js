@@ -30,5 +30,9 @@ Vue.mixin({
 		$el.classList.remove('fade-in');
 		setTimeout(() => {$el.parentNode.removeChild($el)}, 1000);
 	},
+
+	clickEvent() {
+		return "ontouchstart" in document.documentElement ? "touchstart" : "click"
+	}
   }
 })

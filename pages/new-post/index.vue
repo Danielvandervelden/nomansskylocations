@@ -2,13 +2,16 @@
 	<div class="nms__new-post">
 		<div class="nms__new-post--container">
 			<h1 class="nms__new-post--title">Create a new post</h1>
-			<nms-select class="nms__new-post--search-select" v-model="selected" :options="options">What would you like to post?</nms-select>
-			<galaxy-select v-if="selected !== null"></galaxy-select>
-			<multitool-form v-if="selected == 'Multitools'"></multitool-form>
-			<ship-form v-if="selected == 'Ships'"></ship-form>
-			<planet-form v-if="selected == 'Planets'"></planet-form>
+			<nms-select name="category_select" class="nms__new-post--search-select" v-model="selected" :options="options">What would you like to post?</nms-select>
+			<div :class="selected !== null ? 'dropdown-enabled' : ''" class="nms__new-post--form-wrapper">
+				<galaxy-select v-if="selected !== null"></galaxy-select>
+				<multitool-form v-if="selected == 'Multitools'"></multitool-form>
+				<ship-form v-if="selected == 'Ships'"></ship-form>
+				<planet-form v-if="selected == 'Planets'"></planet-form>
+			</div>
 			<nms-button back="true">Back</nms-button>
 		</div>
+		{{selected}}
 	</div>
 </template>
 
@@ -29,9 +32,6 @@
 			return {
 				options: ['Multitools', 'Ships', 'Planets'],
 				selected: null,
-				post: {
-					
-				},
 			}
 		},
 		created() {
@@ -58,6 +58,15 @@
 
 		&--search-select {
 			margin-bottom: 2rem;
+		}
+
+		&--form-wrapper {
+			max-height: 0;
+			transition: all .3s ease-in-out;
+
+			&.dropdown-enabled {
+				max-height: 1000px;
+			}
 		}
 	}
 </style>

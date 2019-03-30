@@ -1,6 +1,6 @@
 <template>
 	<div class='nms__select--galaxy'>
-		<nms-select label="What galaxy?" :options="galaxies"></nms-select>
+		<nms-select search="true" name="galaxy_select" label="What galaxy?" :options="galaxies"></nms-select>
 	</div>
 </template>
 

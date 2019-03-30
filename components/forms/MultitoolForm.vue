@@ -3,6 +3,7 @@
 		<nms-select label="What type of Multitool?" :options="type"></nms-select>
 		<nms-select label="What class?" :options="rank"></nms-select>
 		<nms-select label="How many slots?" :options="slots"></nms-select>		
+		{{filled.type}}
 	</form>
 </template>
 
