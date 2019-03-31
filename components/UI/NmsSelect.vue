@@ -5,7 +5,7 @@
 			<option selected value="null"></option>
 			<option v-for="option in options" :value="option" :key="option">{{option}}</option>
 		</select>
-		<div :id="name" @click="activateDropdown($event)" class="nms-select">
+		<div :id="name" class="nms-select">
 			<div class="nms-selected"><span><slot></slot></span></div>
 			<div class="nms-select__options">
 				<div class="dropdown-filter-wrapper">
@@ -33,11 +33,6 @@
 			}
 		},
 		methods: {
-			activateDropdown(e) {
-				e.target.classList.add('dropdown-active');
-				let dropdownFilter = e.target.querySelector('#dropdown-filter');
-				dropdownFilter !== null ? dropdownFilter.focus() : '';
-			},
 			filterDropdown(e) {
 				let filterInput = e.target.value;
 				let allOptions = [...e.target.closest('.nms-select__options').querySelectorAll('.nms-select__option')];
@@ -52,6 +47,8 @@
 		},
 		mounted() {
 			let dropdownChildren = [...document.querySelectorAll('#' + this.name + ' .nms-select__option')];
+			let customSelect = document.getElementById(this.name);
+			let dropdownFilter = customSelect.querySelector('#dropdown-filter'); // Gotta select the dropdown filter to check it's length, otherwise we don't focus it.
 			dropdownChildren.forEach(child => {
 				child.addEventListener(this.clickEvent(), (e) => {
 					let parent = e.target.closest('.nms-select'); // Find the parent since we will need it anyway later to remove dropdown active class
@@ -64,6 +61,13 @@
 					select.dispatchEvent(new Event('input', {'bubbles': true, 'cancelable': true})); // Dispatch an actual input event so v-model works properly
 					parent.classList.remove('dropdown-active'); // Remove the dropdown class so it closes.
 				})
+			})
+			customSelect.addEventListener(this.clickEvent(), (e) => {
+				if(!e.target.classList.contains('dropdown-active')) {
+					e.target.classList.add('dropdown-active');
+				} else {
+					e.target.classList.remove('dropdown-active');
+				}
 			})
 		}
 	}

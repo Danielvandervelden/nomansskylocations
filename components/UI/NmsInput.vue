@@ -1,15 +1,15 @@
 <template>
 	<div class="form-control">
 		<label v-if="label" :for="name">{{label}}</label>
-		<input :style="{ 'border' : `1px solid ${border_color }`}" v-if="[type == 'text', type == 'email', type == 'password']" :name="name" class="nms-input" @input="inputHandler($event)" :type="type" :placeholder="placeholder">
-		<textarea :style="{ 'border' : `1px solid ${border_color }`}" class="nms-textarea" v-else-if="type = 'textarea'" @input="inputHandler($event)" :placeholder="placeholder" />
+		<input v-if="checkType" :name="name" class="nms-input" @input="inputHandler($event)" :type="kind" :placeholder="placeholder">
+		<textarea :style="{ 'border' : `1px solid ${border_color }`}" class="nms-textarea" v-else-if="kind === 'textarea'" @input="inputHandler($event)" :placeholder="placeholder" />
 	</div>
 </template>
 
 <script>
 	export default {
 		props: [
-			'type',
+			'kind',
 			'placeholder',
 			'value',
 			'label',
@@ -18,6 +18,15 @@
 		],
 		data() {
 			return {
+			}
+		},
+		computed: {
+			checkType() {
+				if(this.kind === 'text' || this.kind === 'email' || this.kind === 'password') {
+					return true
+				} else {
+					return false
+				}
 			}
 		},
 		methods: {
@@ -57,12 +66,12 @@
 
 	.nms-input {
 		padding: 1rem 1.5rem;
-		border-radius: .5rem;
-		background-color: transparent;
+		border-radius: .8rem;
+		background-color: #FFF;
 		width: 100%;
 		box-sizing: border-box;
 		border-style: none;
-		border: 1px solid $grey;
+		min-height: 5rem;
 
 		&:active,
 		&:focus {
@@ -73,16 +82,21 @@
 
 	.nms-textarea {
 		padding: 1rem 1.5rem;
-		border: 1px solid $grey;
-		border-radius: 5px;
-		background-color: transparent;
+		border-radius: .8rem;
+		background-color: #FFF;
 		width: 100%;
 		box-sizing: border-box;
+		min-height: 15rem;
+		border: 0;
 
 		&:active,
 		&:focus {
 			outline: 0;
-			border: 1px solid $grey;
 		}
+	}
+
+	input,
+	textarea {
+		font-family: inherit;
 	}
 </style>

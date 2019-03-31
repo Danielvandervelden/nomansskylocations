@@ -4,7 +4,6 @@
 			<h1 class="nms__new-post--title">Create a new post</h1>
 			<nms-select name="category_select" class="nms__new-post--search-select" v-model="selected" :options="options">What would you like to post?</nms-select>
 			<div :class="selected !== null ? 'dropdown-enabled' : ''" class="nms__new-post--form-wrapper">
-				<galaxy-select v-if="selected !== null"></galaxy-select>
 				<multitool-form v-if="selected == 'Multitools'"></multitool-form>
 				<ship-form v-if="selected == 'Ships'"></ship-form>
 				<planet-form v-if="selected == 'Planets'"></planet-form>
