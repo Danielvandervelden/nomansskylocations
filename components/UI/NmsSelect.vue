@@ -11,7 +11,9 @@
 				<div class="dropdown-filter-wrapper">
 					<input id="dropdown-filter" v-if="search" type="text" @input="filterDropdown($event)" />
 				</div>
-				<div :data-option="index" v-for="(option, index) in options" :key="option" class="nms-select__option">{{option}}</div>
+				<div class="nms-select__options--wrapper">
+					<div :data-option="index" v-for="(option, index) in options" :key="option" class="nms-select__option">{{option}}</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -155,7 +157,11 @@
 
 		.nms-select__options {
 			max-height: 300px;
-			overflow: auto;
+			
+			&--wrapper {
+				overflow: auto;
+				 max-height: 230px;
+			}
 		}
 	}
 
