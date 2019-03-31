@@ -24,3 +24,13 @@ export const getters = {
 		return state.glyphs;
 	}
 }
+
+export const mutations = {
+
+}
+
+export const actions = {
+	uploadFile({commit}, image) {
+		console.log("wee", image);
+	}
+}

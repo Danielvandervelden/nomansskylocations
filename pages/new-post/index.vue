@@ -4,9 +4,11 @@
 			<h1 class="nms__new-post--title">Create a new post</h1>
 			<nms-select name="category_select" class="nms__new-post--search-select" v-model="selected" :options="options">What would you like to post?</nms-select>
 			<div :class="selected !== null ? 'dropdown-enabled' : ''" class="nms__new-post--form-wrapper">
-				<multitool-form v-if="selected == 'Multitools'"></multitool-form>
-				<ship-form v-if="selected == 'Ships'"></ship-form>
-				<planet-form v-if="selected == 'Planets'"></planet-form>
+				<div class="form">
+					<multitool-form v-if="selected == 'Multitools'"></multitool-form>
+					<ship-form v-if="selected == 'Ships'"></ship-form>
+					<planet-form v-if="selected == 'Planets'"></planet-form>
+				</div>
 			</div>
 			<nms-button back="true">Back</nms-button>
 		</div>
@@ -35,6 +37,21 @@
 		created() {
 			this.$store.dispatch('users/login/checkIfLoggedIn');
 		},
+		mounted() {
+			let observedDiv = document.querySelector('.nms__new-post--form-wrapper > .form');
+			let maxHeightDiv = document.querySelector('.nms__new-post--form-wrapper');
+
+			let config = {attributes: true, childList: true, subtree: true};
+
+			let callback = (mutationsList, observer) => {
+				let heightOfObservedDiv = observedDiv.offsetHeight;
+				maxHeightDiv.style.maxHeight = heightOfObservedDiv + 'px';
+			}
+
+			let observer = new MutationObserver(callback);
+
+			observer.observe(observedDiv, config);
+		},
 		layout: 'new-post'
 	}
 </script>
@@ -61,10 +78,8 @@
 		&--form-wrapper {
 			max-height: 0;
 			transition: all .3s ease-in-out;
-
-			&.dropdown-enabled {
-				max-height: 1000px;
-			}
+			overflow: hidden;
+			margin-bottom: 2.5rem;
 		}
 	}
 </style>

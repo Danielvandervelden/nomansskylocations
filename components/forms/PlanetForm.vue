@@ -1,6 +1,6 @@
 <template>
 	<form>
-		
+		<h1>Planet form</h1>
 	</form>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-	<form>
-		<h1>Ship form</h1>
-	</form>
+	<div class="nms-upload">
+		<input type="file">
+	</div>
 </template>
 
 <script>
@@ -10,9 +10,9 @@
 			return {
 				
 			}
-		}
+		},
 	}
 </script>
-<style scoped lang='scss'>
+<style scoped lang='lang'>
 	
 </style>

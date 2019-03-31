@@ -2,7 +2,7 @@
 	<div class="form-control">
 		<label v-if="label" :for="name">{{label}}</label>
 		<input v-if="checkType" :name="name" class="nms-input" @input="inputHandler($event)" :type="kind" :placeholder="placeholder">
-		<textarea :style="{ 'border' : `1px solid ${border_color }`}" class="nms-textarea" v-else-if="kind === 'textarea'" @input="inputHandler($event)" :placeholder="placeholder" />
+		<textarea class="nms-textarea" v-else-if="kind === 'textarea'" @input="inputHandler($event)" :placeholder="placeholder" />
 	</div>
 </template>
 
@@ -11,10 +11,8 @@
 		props: [
 			'kind',
 			'placeholder',
-			'value',
 			'label',
 			'name',
-			'border_color'
 		],
 		data() {
 			return {
@@ -22,7 +20,7 @@
 		},
 		computed: {
 			checkType() {
-				if(this.kind === 'text' || this.kind === 'email' || this.kind === 'password') {
+				if(this.kind === 'text' || this.kind === 'email' || this.kind === 'password' || this.kind === 'number') {
 					return true
 				} else {
 					return false
@@ -76,7 +74,6 @@
 		&:active,
 		&:focus {
 			outline: 0;
-			border: 1px solid $green;
 		}
 	}
 
@@ -98,5 +95,6 @@
 	input,
 	textarea {
 		font-family: inherit;
+		font-size: 1.6rem;
 	}
 </style>

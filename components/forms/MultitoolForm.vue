@@ -5,10 +5,16 @@
 		<nms-select v-model="filled.rank" name="multitool_class" label="What class?" :options="rank"></nms-select>
 		<nms-select v-model="filled.slots" name="multitool_slots" label="How many slots?" :options="slots"></nms-select>
 		<nms-input v-model="filled.description" kind="textarea" label="Enter a description for finding it"></nms-input>
-		<glyph-selector v-model="filled.glyphs" label="Please enter the portal glyph combination"></glyph-selector>
+		<glyph-selector v-model="filled.glyphs" label="Enter the portal glyph combination"></glyph-selector>
 		<span>Where is the multitool located?</span>
 		<nms-radio v-model="filled.location" radiovalue="station" name="location">Space Station</nms-radio>
 		<nms-radio v-model="filled.location" radiovalue="planet" name="location">Planet</nms-radio>
+		<div v-if="filled.location === 'planet'" class="nms__form-multitool--planet-details">
+			<nms-input v-model="filled.planet" label="Planet Name" name="planet" kind="text"></nms-input>
+			<nms-input v-model="filled.coords" label="Galactic Coordinates" name="coords" kind="text"></nms-input>
+		</div>
+		<nms-upload @change.native="fileSelected($event)"></nms-upload>
+		<nms-button @click.native="uploadFile" color="red">Upload!</nms-button>
 	</form>
 </template>
 
@@ -33,8 +39,19 @@
 					galaxy: '',
 					glyphs: '',
 					location: '',
-					description: ''
+					planet: '',
+					coords: '',
+					description: '',
+					image: ''
 				}
+			}
+		},
+		methods: {
+			fileSelected(e) {
+				this.filled.image = e.target.files[0];
+			},
+			uploadFile() {
+				this.$store.dispatch('newpost/new-post/uploadFile', this.filled.image)
 			}
 		}
 	}
