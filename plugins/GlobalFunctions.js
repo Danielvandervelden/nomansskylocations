@@ -1,38 +1,42 @@
 import Vue from 'vue';
 
 Vue.mixin({
-  methods: {
+	methods: {
 
-	// METHOD FOR DISPLAYING A QUICK MESSAGE
-    createMessage($message, $elementToAppendTo) {
-      let self = this;
-      let wrapper = document.createElement('div');
-      wrapper.classList.add('nms-message');
-      wrapper.style.transition = 'all .3s ease-in-out';
+		// METHOD FOR DISPLAYING A QUICK MESSAGE
+		createMessage($message, $elementToAppendTo) {
+			let self = this;
+			let wrapper = document.createElement('div');
+			wrapper.classList.add('nms-message');
+			wrapper.style.transition = 'all .3s ease-in-out';
 
-      let message = document.createTextNode($message);
+			let message = document.createTextNode($message);
 
-      wrapper.appendChild(message);
+			wrapper.appendChild(message);
 
-	  this.fadeIn(wrapper);
-      $elementToAppendTo.appendChild(wrapper);
-	  setTimeout(() => {self.fadeOut(wrapper)}, 5000);
-    },
+			this.fadeIn(wrapper);
+			$elementToAppendTo.appendChild(wrapper);
+			setTimeout(() => {
+				self.fadeOut(wrapper)
+			}, 5000);
+		},
 
-	// FADE IN AN ELEMENT
-    fadeIn($el) {	
-		$el.classList.add('fade-in');
-	},
+		// FADE IN AN ELEMENT
+		fadeIn($el) {
+			$el.classList.add('fade-in');
+		},
 
-	// FADEOUT AN ELEMENT
-	fadeOut($el) {	
-		$el.classList.add('fade-out');
-		$el.classList.remove('fade-in');
-		setTimeout(() => {$el.parentNode.removeChild($el)}, 1000);
-	},
+		// FADEOUT AN ELEMENT
+		fadeOut($el) {
+			$el.classList.add('fade-out');
+			$el.classList.remove('fade-in');
+			setTimeout(() => {
+				$el.parentNode.removeChild($el)
+			}, 1000);
+		},
 
-	clickEvent() {
-		return "ontouchstart" in document.documentElement ? "touchstart" : "click"
+		clickEvent() {
+			return "ontouchstart" in document.documentElement ? "touchstart" : "click"
+		},
 	}
-  }
 })

@@ -1,5 +1,6 @@
 <template>
 	<form class="nms__form-multitool">
+		<nms-upload name="multitool_image_upload" @change.native="fileSelected($event)"></nms-upload>
 		<galaxy-select v-model="filled.galaxy"></galaxy-select>
 		<nms-select v-model="filled.type" name="multitool_type" label="What type of Multitool?" :options="type"></nms-select>
 		<nms-select v-model="filled.rank" name="multitool_class" label="What class?" :options="rank"></nms-select>
@@ -13,8 +14,8 @@
 			<nms-input v-model="filled.planet" label="Planet Name" name="planet" kind="text"></nms-input>
 			<nms-input v-model="filled.coords" label="Galactic Coordinates" name="coords" kind="text"></nms-input>
 		</div>
-		<nms-upload @change.native="fileSelected($event)"></nms-upload>
-		<nms-button @click.native="uploadFile" color="red">Upload!</nms-button>
+
+		<nms-button class="nms__form-multitool--submit" color="green">Submit post</nms-button>
 	</form>
 </template>
 
@@ -48,14 +49,26 @@
 		},
 		methods: {
 			fileSelected(e) {
-				this.filled.image = e.target.files[0];
+				if(e.target.files[0].size < 1000000) {
+					this.filled.image = e.target.files[0];
+					this.filled.image.id = +new Date() + this.filled.image.name.replace(/\s/g,'-');
+				}
 			},
 			uploadFile() {
-				this.$store.dispatch('newpost/new-post/uploadFile', this.filled.image)
+				if(this.filled.image !== '') {
+					document.querySelector('body').classList.add('loading');
+					this.$store.dispatch('newpost/new-post/uploadFile', this.filled.image);
+				}
 			}
 		}
 	}
 </script>
 <style scoped lang='scss'>
-	
+	.nms__form-multitool {
+		padding-bottom: 2rem;
+
+		&--submit {
+			margin-top: 2rem;
+		}
+	}
 </style>

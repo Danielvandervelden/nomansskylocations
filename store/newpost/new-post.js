@@ -1,3 +1,5 @@
+import { db, storage } from "@/plugins/database/firebase.js";
+
 export const state = () => ({
 	glyphs: [
 		{glyph: '0'},
@@ -30,7 +32,21 @@ export const mutations = {
 }
 
 export const actions = {
-	uploadFile({commit}, image) {
-		console.log("wee", image);
+	async uploadFile({commit}, image) {
+		const ref = storage.ref("uploads");
+		const fileName = image.id;
+		const metaData = { contentType: image.type };
+
+		const upload = await ref.child(fileName).put(image, metaData)
+		.then(res => {
+			document.querySelector('body').classList.remove('loading');
+			let uploadDivSpan = [...document.querySelectorAll('span.label')].filter(span => { return span.innerText == image.name })
+			uploadDivSpan[0].innerText = 'Upload successful!';
+		})
+
+		.catch(e => {
+			let uploadDivSpan = [...document.querySelectorAll('span.label')].filter(span => { return span.innerText == image.name })
+			this._vm.createMessage("Something went wrong...", uploadDivSpan[0].closest('.nms-upload'))
+		})
 	}
 }
