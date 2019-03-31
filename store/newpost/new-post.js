@@ -48,5 +48,28 @@ export const actions = {
 			let uploadDivSpan = [...document.querySelectorAll('span.label')].filter(span => { return span.innerText == image.name })
 			this._vm.createMessage("Something went wrong...", uploadDivSpan[0].closest('.nms-upload'))
 		})
+	},
+
+	async submitNewPost({context}, post) {
+		if (this.$cookies.get('user') !== undefined) {
+			let user_id = this.$cookies.get('user').user_id;
+			let response = await db.collection('posts/' + post.postType + '/contents/').doc(post.id.toString()).set({
+				id: post.id,
+				type: post.type,
+				slots: post.slots,
+				class: post.rank,
+				galaxy: post.galaxy,
+				glyphs: post.glyphs,
+				image_id: post.image.id,
+				location: post.location,
+				planet: post.planet,
+				coords: post.coords,
+				description: post.description,
+				user: user_id
+			});
+		} else {
+			this.$router.push('/login');
+		}
+		document.querySelector('body').classList.remove('loading');
 	}
 }

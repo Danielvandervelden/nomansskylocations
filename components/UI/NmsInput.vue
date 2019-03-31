@@ -1,8 +1,10 @@
 <template>
 	<div class="form-control">
 		<label v-if="label" :for="name">{{label}}</label>
-		<input v-if="checkType" :name="name" class="nms-input" @input="inputHandler($event)" :type="kind" :placeholder="placeholder">
-		<textarea class="nms-textarea" v-else-if="kind === 'textarea'" @input="inputHandler($event)" :placeholder="placeholder" />
+		<div :id="name" class="input-textarea-wrapper">
+			<input v-if="checkType" :name="name" class="nms-input" @input="inputHandler($event)" :type="kind" :placeholder="placeholder">
+			<textarea class="nms-textarea" v-else-if="kind === 'textarea'" @input="inputHandler($event)" :placeholder="placeholder" />
+		</div>
 	</div>
 </template>
 
@@ -35,6 +37,10 @@
 	}
 </script>
 <style scoped lang='scss'>
+
+	.input-textarea-wrapper {
+		position: relative;
+	}
 
 	.form-control {
 		margin: 1.5rem 0;

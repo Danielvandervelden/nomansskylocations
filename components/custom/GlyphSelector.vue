@@ -1,5 +1,5 @@
 <template>
-	<div class="glyph__selector">
+	<div id="glyph-selector" class="glyph__selector">
 		<div class="glyph-input__wrapper">
 			<label v-if="label" for="glyph-input">{{label}}</label>
 			<input @input="inputHandler($event)" name="glyph-input" class="glyph-input" type="text">

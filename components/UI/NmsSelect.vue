@@ -27,11 +27,6 @@
 			'label',
 			'search'
 		],
-		data() {
-			return {
-				
-			}
-		},
 		methods: {
 			filterDropdown(e) {
 				let filterInput = e.target.value;
@@ -55,6 +50,7 @@
 					let selected = parent.querySelector('.nms-selected span'); // Get the selected div so we can change its text
 					let select = document.getElementById(this.name + '_select'); // Get the actual select dropdown
 					let allOptions = select.options; // Grab all the options of the select
+					this.selected = e.target.value;
 					
 					selected.innerText = e.target.innerText; // Set the text of our custom select
 					allOptions[Number(e.target.getAttribute('data-option')) + 1].selected = true; // Set the selected item in the original select
@@ -69,10 +65,19 @@
 					e.target.classList.remove('dropdown-active');
 				}
 			})
+		},
+		computed: {
+			getSelected() {
+				return this.selected;
+			}
 		}
 	}
 </script>
 <style scoped lang='scss'>
+
+	.form-group {
+		position: relative;
+	}
 
 	.hidden {
 		display: none;
