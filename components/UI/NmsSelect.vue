@@ -92,6 +92,7 @@
 			height: inherit;
 			display: inline-flex;
 			align-items: center;
+			pointer-events: none;
 
 			span {
 				padding: .5rem 1rem;

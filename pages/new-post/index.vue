@@ -10,7 +10,6 @@
 			</div>
 			<nms-button back="true">Back</nms-button>
 		</div>
-		{{selected}}
 	</div>
 </template>
 

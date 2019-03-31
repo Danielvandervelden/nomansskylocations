@@ -209,6 +209,16 @@ h6 {
   color: $white;
 }
 
+@font-face {
+	font-family: 'glyphs-mono';
+	src: url('~assets/fonts/NMS-Glyphs-Mono.ttf');
+}
+
+@font-face {
+	font-family: 'glyphs-tight';
+	src: url('~assets/fonts/NMS-Glyphs-Tight.ttf');
+}
+
 /*
   * Animations
   * * * * * */

@@ -34,7 +34,7 @@ module.exports = {
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css?family=Work+Sans:300,900"
-      },
+	  }
     ],
   },
 
