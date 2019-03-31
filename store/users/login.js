@@ -21,11 +21,13 @@ export const getters = {
 
 export const mutations = {
 	loginFail(state, data) {
+		document.querySelector('body').classList.remove('loading');
 		[...document.querySelectorAll(data.el)].forEach(el => {
 			this._vm.createMessage(data.message, el);
 		})
 	},
 	loginSetCookiesAndRedirect(state, userData) {
+		document.querySelector('body').classList.remove('loading');
 		this.$cookies.set('user', {
 			display_name: userData.display_name,
 			user_id: userData.uid,
@@ -41,17 +43,19 @@ export const mutations = {
 	},
 
 	setLoginState(state, userData) {
+		document.querySelector('body').classList.remove('loading');
 		state.display_name = userData.display_name;
 		state.token = userData.ra;
 	},
 
 	redirectToLogin(state) {
+		document.querySelector('body').classList.remove('loading');
 		this.$router.push('/login');
 	}
 }
 
 export const actions = {
-	loginUser({dispatch}, userData) {
+	loginUser({dispatch, commit}, userData) {
 		auth.signInWithEmailAndPassword(userData.email, userData.password)
 		.then(res => {
 			dispatch('fetchUserMeta', res.user);

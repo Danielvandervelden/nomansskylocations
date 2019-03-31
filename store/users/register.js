@@ -17,8 +17,10 @@ export const mutations = {
 		[...document.querySelectorAll(data.el)].forEach(el => {
 			this._vm.createMessage(data.message, el);
 		})
+		document.querySelector('body').classList.remove('loading');
 	},
 	registerSuccess() {
+		document.querySelector('body').classList.remove('loading');
 		this.$router.push('/login');
 	}
 }
@@ -39,9 +41,9 @@ export const actions = {
 		.then(res => {
 			db.collection('users').doc(res.user.uid).set({
 				displayName: userData.displayName,
-				email: userData.email
+				email: userData.email,
+				posts: []
 			})
-
 			commit("registerSuccess");
 		})
 		.catch(e => {

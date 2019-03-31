@@ -35,6 +35,7 @@
 		},
 		methods: {
 			registerUser() {
+				document.querySelector('body').classList.add('loading');
 				this.$store.dispatch('users/register/registerUser', this.user);
 			}
 		}

@@ -28,7 +28,9 @@ export const getters = {
 }
 
 export const mutations = {
-
+	postSuccessful(state, payload) {
+		// this.$router.push('/');
+	}
 }
 
 export const actions = {
@@ -50,7 +52,7 @@ export const actions = {
 		})
 	},
 
-	async submitNewPost({context}, post) {
+	async submitNewPost({commit, dispatch}, post) {
 		if (this.$cookies.get('user') !== undefined) {
 			let user_id = this.$cookies.get('user').user_id;
 			let response = await db.collection('posts/' + post.postType + '/contents/').doc(post.id.toString()).set({
@@ -67,9 +69,26 @@ export const actions = {
 				description: post.description,
 				user: user_id
 			});
+
+			dispatch('addPostToUser', {post_id: post.id, user_id: user_id});
+			commit('postSuccessful');
 		} else {
 			this.$router.push('/login');
 		}
 		document.querySelector('body').classList.remove('loading');
+	},
+
+	addPostToUser({commit, dispatch}, payload) {
+		let ref = db.collection('users').doc(payload.user_id);
+		let postsArray = []
+		ref.get().then(doc => {
+			if(doc.exists) { postsArray = [...doc.data().posts] }
+
+			postsArray.push(payload.post_id);
+			ref.update({
+				posts: postsArray
+			})
+		})
+	
 	}
 }

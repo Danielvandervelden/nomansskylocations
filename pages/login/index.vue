@@ -30,6 +30,7 @@
 		},
 		methods: {
 			loginUser() {
+				document.querySelector('body').classList.add('loading');
 				this.$store.dispatch('users/login/loginUser', this.user);
 			}
 		}
