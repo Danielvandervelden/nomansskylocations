@@ -44,8 +44,10 @@
 			let config = {attributes: true, childList: true, subtree: true};
 
 			let callback = (mutationsList, observer) => {
-				let heightOfObservedDiv = observedDiv.offsetHeight;
-				maxHeightDiv.style.maxHeight = heightOfObservedDiv + 'px';
+				setTimeout(() => {
+					let heightOfObservedDiv = observedDiv.offsetHeight + 50;
+					maxHeightDiv.style.maxHeight = heightOfObservedDiv + 'px';
+				}, 100)
 			}
 
 			let observer = new MutationObserver(callback);

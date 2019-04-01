@@ -55,20 +55,47 @@ export const actions = {
 	async submitNewPost({commit, dispatch}, post) {
 		if (this.$cookies.get('user') !== undefined) {
 			let user_id = this.$cookies.get('user').user_id;
-			let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
-				id: post.id,
-				type: post.type,
-				slots: post.slots,
-				class: post.rank,
-				galaxy: post.galaxy,
-				glyphs: post.glyphs,
-				image_id: post.image.id,
-				location: post.location,
-				planet: post.planet,
-				coords: post.coords,
-				description: post.description,
-				user: user_id
-			});
+			post.id = (+new Date() * Math.random()).toFixed(); 
+			console.log(post);
+			if(post.postType === "multitools") {
+				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
+					id: post.id,
+					type: post.type,
+					slots: post.slots,
+					class: post.rank,
+					galaxy: post.galaxy,
+					glyphs: post.glyphs,
+					image_id: post.image.id,
+					location: post.location,
+					planet: post.planet,
+					coords: post.coords,
+					description: post.description,
+					user: user_id
+				});
+			} else if(post.postType === "planets") {
+				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
+					id: post.id,
+					type: post.type,
+					galaxy: post.galaxy,
+					glyphs: post.glyphs,
+					image_id: post.image.id,
+					planet: post.planet,
+					weather: post.weather,
+					flora: post.flora,
+					fauna: post.fauna,
+					description: post.description,
+					user: user_id
+				});
+			} else if(post.postType === "ships") {
+				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
+					id: post.id,
+					type: post.type,
+					galaxy: post.galaxy,
+					glyphs: post.glyphs,
+					image_id: post.image.id,
+					user: user_id
+				});
+			}
 
 			dispatch('addPostToUser', {post_id: post.id, user_id: user_id});
 			commit('postSuccessful');

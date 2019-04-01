@@ -91,7 +91,6 @@
 					this.createMessage("Please enter the multitool's Galactic Coordinates before submiting", document.getElementById('coords'));
 				} else {
 					document.querySelector('body').classList.add('loading');
-					this.filled.id = +new Date() * Math.random(); 
 					this.$store.dispatch('newpost/new-post/submitNewPost', this.filled);
 				}
 			}

@@ -43,7 +43,6 @@ export const mutations = {
 	},
 
 	setLoginState(state, userData) {
-		document.querySelector('body').classList.remove('loading');
 		state.display_name = userData.display_name;
 		state.token = userData.ra;
 	},
