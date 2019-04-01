@@ -55,7 +55,7 @@ export const actions = {
 	async submitNewPost({commit, dispatch}, post) {
 		if (this.$cookies.get('user') !== undefined) {
 			let user_id = this.$cookies.get('user').user_id;
-			let response = await db.collection('posts/' + post.postType + '/contents/').doc(post.id.toString()).set({
+			let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
 				id: post.id,
 				type: post.type,
 				slots: post.slots,
