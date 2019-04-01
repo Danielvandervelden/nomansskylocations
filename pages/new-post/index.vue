@@ -16,9 +16,9 @@
 </template>
 
 <script>
-	import PlanetForm from '@/components/forms/PlanetForm.vue';
-	import MultitoolForm from '@/components/forms/MultitoolForm.vue';
-	import ShipForm from '@/components/forms/ShipForm.vue';
+	import PlanetForm from '@/components/forms/post/PlanetForm.vue';
+	import MultitoolForm from '@/components/forms/post/MultitoolForm.vue';
+	import ShipForm from '@/components/forms/post/ShipForm.vue';
 	import GalaxySelect from '@/components/UI/Selects/GalaxySelect.vue';
 
 	export default {

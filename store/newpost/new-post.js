@@ -29,7 +29,7 @@ export const getters = {
 
 export const mutations = {
 	postSuccessful(state, payload) {
-		// this.$router.push('/');
+		this.$router.push('/');
 	}
 }
 

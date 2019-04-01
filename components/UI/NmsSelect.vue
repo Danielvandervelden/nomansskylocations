@@ -31,8 +31,9 @@
 			filterDropdown(e) {
 				let filterInput = e.target.value;
 				let allOptions = [...e.target.closest('.nms-select__options').querySelectorAll('.nms-select__option')];
+				console.log(option.innerText.localeCompare(filterInput))
 				allOptions.forEach(option => {
-					if(!option.innerText.startsWith(filterInput)) {
+					if(!option.innerText.localeCompare(filterInput)) {
 						option.classList.add('hidden');
 					} else {
 						option.classList.remove('hidden');
