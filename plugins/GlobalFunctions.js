@@ -35,8 +35,31 @@ Vue.mixin({
 			}, 1000);
 		},
 
+		// WHENEVER A CLICK EVENT OCCURS ANYWHERE, CALL THIS FUNCTION TO GET THE CORRECT ONE
 		clickEvent() {
 			return "ontouchstart" in document.documentElement ? "touchstart" : "click"
 		},
+
+		// BASICALLY FORM CHECKING FUNCTION
+		evaluateInput($condition, $elementToScrollToAndAppendMessageTo, $message) {
+			if($condition) {
+				document.getElementById($elementToScrollToAndAppendMessageTo).scrollIntoView({behavior: 'smooth', block: 'center'});
+				this.createMessage($message, document.getElementById($elementToScrollToAndAppendMessageTo));
+				return false;
+			} else {
+				return true;
+			}
+		},
+
+		// BODY LOADING ON OR OFF
+		loading($status) {
+			if($status) {
+				document.querySelector('body').classList.add('loading');
+			} else if(!$status) {
+				document.querySelector('body').classList.remove('loading');
+			} else {
+				console.log("Pass a status you moron");
+			}
+		}
 	}
 })

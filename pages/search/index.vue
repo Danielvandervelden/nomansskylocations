@@ -1,17 +1,17 @@
 <template>
 	<div>
-  	<div class="title-wrapper">
-  		<h1>NO MANS SKY LOCATIONS</h1>
-  	</div>
-  	<section class="content">
-  		<div class="content__wrapper">
-  			<h3>What are you searching for today?</h3>
-			<nms-select v-model="selected" name="global_search" :options="search_options"></nms-select>
-			<multitool-form v-if="selected == 'multitool'"></multitool-form>
-			<ship-form v-if="selected == 'ship'"></ship-form>
-			<planet-form v-if="selected == 'planet'"></planet-form>
-  		</div>
-  	</section>
+		<div class="title-wrapper">
+			<h1>NO MANS SKY LOCATIONS</h1>
+		</div>
+		<section class="content">
+			<div class="content__wrapper">
+				<h3>What are you searching for today?</h3>
+				<nms-select v-model="selected" name="global_search" :options="search_options"></nms-select>
+				<multitool-form v-if="selected == 'Multitools'"></multitool-form>
+				<ship-form v-if="selected == 'Ships'"></ship-form>
+				<planet-form v-if="selected == 'Planets'"></planet-form>
+			</div>
+		</section>
   </div>
 </template>
 
@@ -42,5 +42,9 @@
 			font-size: 6rem;
 			text-align: center;
 		}
+	}
+
+	.content__wrapper {
+		margin-bottom: 10rem;
 	}
 </style>

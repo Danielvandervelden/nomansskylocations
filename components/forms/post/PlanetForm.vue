@@ -5,7 +5,7 @@
 		<nms-input v-model="filled.planet" label="Planet Name" name="planet" kind="text"></nms-input>
 		<nms-select search="true" v-model="filled.type" name="planet_biome" label="What biome does the planet have?" :options="biomes"></nms-select>
 		<nms-select search="true" v-model="filled.weather" name="planet_weather" label="What weather is on the planet?" :options="weathertypes"></nms-select>
-		<nms-select v-model="filled.sentinels" name="sentinels" label="How are the sentinels?" :options="sentinels"></nms-select>
+		<nms-select v-model="filled.sentinels" name="planet_sentinels" label="How are the sentinels?" :options="sentinels"></nms-select>
 		<nms-input name="planet_flora" v-model="filled.flora" kind="text" label="What's the Flora status?"></nms-input>
 		<nms-input name="planet_fauna" v-model="filled.fauna" kind="text" label="What's the Fauna status?"></nms-input>
 		<nms-input v-model="filled.description" kind="textarea" label="What's so awesome about this planet?"></nms-input>
@@ -313,6 +313,7 @@
 					image: null,
 					type: null,
 					weather: null,
+					sentinels: null,
 					flora: null,
 					fauna: null,
 					planet: null,
@@ -336,55 +337,17 @@
 				}
 			},
 			submitPost() {
-				if (this.filled.image === null) {
-					document.getElementById('planet_image_upload').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please upload an image before submiting", document.getElementById('planet_image_upload'));
-				} else if (this.filled.galaxy === null) {
-					document.getElementById('galaxy_select').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please select a galaxy before submiting", document.getElementById('galaxy_select'));
-				} else if (this.filled.planet == null) {
-					document.getElementById('planet').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please select the planet's name before submiting", document.getElementById('planet'));
-				} else if (this.filled.type == null) {
-					document.getElementById('planet_biome').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please select a planet biome before submiting", document.getElementById('planet_biome'));
-				} else if (this.filled.weather == null) {
-					document.getElementById('planet_weather').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please select the planet's weather before submiting", document.getElementById('planet_weather'));
-				} else if (this.filled.flora == null) {
-					document.getElementById('planet_flora').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please select the planet's fauna before submiting", document.getElementById('planet_flora'));
-				} else if (this.filled.fauna == null) {
-					document.getElementById('planet_fauna').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please select the planet's flora before submiting", document.getElementById('planet_fauna'));
-				} else if (this.filled.glyphs == null) {
-					document.getElementById('glyph-selector').scrollIntoView({
-						behavior: 'smooth',
-						block: 'center'
-					});
-					this.createMessage("Please enter the portal glyphs before submiting", document.getElementById('glyph-selector'));
-				} else {
+				if(
+					this.evaluateInput(this.filled.image === null, "planet_image_upload", "Please upload an image") &&
+					this.evaluateInput(this.filled.galaxy === null, "galaxy_select", "Please select a galaxy") &&
+					this.evaluateInput(this.filled.planet === null, "planet", "Please enter the planet's name") &&
+					this.evaluateInput(this.filled.type === null, "planet_biome", "Please select a planet biome before submitting") &&
+					this.evaluateInput(this.filled.weather === null, "planet_weather", "Please enter the planet's weather") &&
+					this.evaluateInput(this.filled.sentinels === null, "planet_sentinels", "Please enter the planet's sentinel level") &&
+					this.evaluateInput(this.filled.flora === null, "planet_flora", "Please enter the planet's flora") &&
+					this.evaluateInput(this.filled.fauna === null, "planet_fauna", "Please enter the planet's fauna") &&
+					this.evaluateInput(this.filled.glyphs === null, "glyph__selector", "Please enter the portal glyphs")
+				) {
 					document.querySelector('body').classList.add('loading');
 					this.$store.dispatch('newpost/new-post/submitNewPost', this.filled);
 				}

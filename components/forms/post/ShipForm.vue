@@ -44,19 +44,12 @@
 					this.$store.dispatch('newpost/new-post/uploadFile', this.filled.image);
 				}
 			},submitPost() {
-				if(this.filled.image === null) {
-					document.getElementById('ship_image_upload').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please upload an image before submiting", document.getElementById('ship_image_upload'));
-				} else if(this.filled.galaxy === null) {
-					document.getElementById('galaxy_select').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please select a galaxy before submiting", document.getElementById('galaxy_select'));
-				} else if(this.filled.type == null) {
-					document.getElementById('ship_type').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please select a multitool type before submiting", document.getElementById('ship_type'));
-				} else if(this.filled.glyphs == null) {
-					document.getElementById('glyph-selector').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please enter the portal glyphs before submiting", document.getElementById('glyph-selector'));
-				} else {
+				if(
+					this.evaluateInput(this.filled.image === null, "ship_image_upload", "Please upload an image before submitting") &&
+					this.evaluateInput(this.filled.galaxy === null, "galaxy_select", "Please select a galaxy") &&
+					this.evaluateInput(this.filled.type === null, "ship_type", "Please select a ship type") &&
+					this.evaluateInput(this.filled.glyphs === null, "glyph__selector", "Please enter the portal glyphs")
+				) {
 					document.querySelector('body').classList.add('loading');
 					this.$store.dispatch('newpost/new-post/submitNewPost', this.filled);
 				}

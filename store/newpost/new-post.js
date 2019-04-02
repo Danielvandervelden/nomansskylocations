@@ -41,12 +41,13 @@ export const actions = {
 
 		const upload = await ref.child(fileName).put(image, metaData)
 		.then(res => {
-			document.querySelector('body').classList.remove('loading');
+			this._vm.loading(false);
 			let uploadDivSpan = [...document.querySelectorAll('span.label')].filter(span => { return span.innerText == image.name })
 			uploadDivSpan[0].innerText = 'Upload successful!';
 		})
 
 		.catch(e => {
+			this._vm.loading(false);
 			let uploadDivSpan = [...document.querySelectorAll('span.label')].filter(span => { return span.innerText == image.name })
 			this._vm.createMessage("Something went wrong...", uploadDivSpan[0].closest('.nms-upload'))
 		})
@@ -102,7 +103,7 @@ export const actions = {
 		} else {
 			this.$router.push('/login');
 		}
-		document.querySelector('body').classList.remove('loading');
+		this._vm.loading(false);
 	},
 
 	addPostToUser({commit, dispatch}, payload) {

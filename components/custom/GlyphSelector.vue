@@ -1,7 +1,7 @@
 <template>
-	<div id="glyph-selector" class="glyph__selector">
-		<div class="glyph-input__wrapper">
-			<label v-if="label" for="glyph-input">{{label}}</label>
+	<div class="glyph__selector">
+		<label v-if="label" for="glyph-input">{{label}}</label>
+		<div id="glyph__selector" class="glyph-input__wrapper">
 			<input @input="inputHandler($event)" name="glyph-input" class="glyph-input" type="text">
 		</div>
 		<div class="glyph__selector--explanation">
@@ -41,6 +41,10 @@
 		border: 0;
 		padding: 0 1rem;
 		box-sizing: border-box;
+
+		&__wrapper {
+			position: relative;
+		}
 		
 		&:active,
 		&:focus {

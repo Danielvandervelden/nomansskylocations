@@ -62,34 +62,17 @@
 				}
 			},
 			submitPost() {
-				if(this.filled.image === null) {
-					document.getElementById('multitool_image_upload').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please upload an image before submiting", document.getElementById('multitool_image_upload'));
-				} else if(this.filled.galaxy === null) {
-					document.getElementById('galaxy_select').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please select a galaxy before submiting", document.getElementById('galaxy_select'));
-				} else if(this.filled.type == null) {
-					document.getElementById('multitool_type').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please select a multitool type before submiting", document.getElementById('multitool_type'));
-				} else if(this.filled.rank == null) {
-					document.getElementById('multitool_class').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please select a multitool class before submiting", document.getElementById('multitool_class'));
-				} else if(this.filled.slots == null) {
-					document.getElementById('multitool_slots').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please select the multitool slots before submiting", document.getElementById('multitool_slots'));
-				} else if(this.filled.glyphs == null) {
-					document.getElementById('glyph-selector').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please enter the portal glyphs before submiting", document.getElementById('glyph-selector'));
-				} else if(this.filled.location == null) {
-					document.getElementById('nms__form-multitool--location').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please select a location before submiting", document.getElementById('nms__form-multitool--location'));
-				} else if(this.filled.location == 'planet' && this.filled.planet === null) {
-					document.getElementById('planet').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please enter the planet's name before submiting", document.getElementById('planet'));
-				} else if(this.filled.location == 'planet' && this.filled.coords === null) {
-					document.getElementById('coords').scrollIntoView({behavior: 'smooth', block: 'center'});
-					this.createMessage("Please enter the multitool's Galactic Coordinates before submiting", document.getElementById('coords'));
-				} else {
+				if(
+					this.evaluateInput(this.filled.image === null, "multitool_image_upload", "Please upload an image before submitting") &&
+					this.evaluateInput(this.filled.galaxy === null, "galaxy_select", "Please select a galaxy before submitting") &&
+					this.evaluateInput(this.filled.type === null, "multitool_type", "Please select a multitool type") &&
+					this.evaluateInput(this.filled.rank === null, "multitool_class", "Please select a multitool class") &&
+					this.evaluateInput(this.filled.slots === null, "multitool_slots", "Please select the amount of slots") &&
+					this.evaluateInput(this.filled.glyphs === null, "glyph__selector", "Please enter the portal glyphs") &&
+					this.evaluateInput(this.filled.location === null, "nms__form-multitool--location", "Please select a location before submitting") &&
+					this.evaluateInput(this.filled.location === "planet" && this.filled.planet === null, "planet", "Please enter a planet") &&
+					this.evaluateInput(this.filled.location === "planet" && this.filled.coords === null, "coords", "Please enter the Galactic Coordinates")
+				) {
 					document.querySelector('body').classList.add('loading');
 					this.$store.dispatch('newpost/new-post/submitNewPost', this.filled);
 				}
