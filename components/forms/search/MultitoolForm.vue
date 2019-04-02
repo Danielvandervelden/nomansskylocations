@@ -37,7 +37,7 @@
 					this.evaluateInput(this.filled.rank === null, "multitool_class", "Please fill in a multitool class") &&
 					this.evaluateInput(this.filled.slots === null, "multitool_slots", "Please fill in the multitool slots")
 				) {
-					this.$store.dispatch('searchSubmit', this.filled);
+					this.$store.dispatch('search/search/submitSearch', this.filled);
 				}
 			}
 		}
