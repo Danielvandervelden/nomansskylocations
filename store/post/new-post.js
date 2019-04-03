@@ -61,7 +61,7 @@ export const actions = {
 			let post_date = new Date();
 			post.id = (+new Date() * Math.random()).toFixed(); 
 			if(post.postType === "multitools") {
-				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
+				let response = await db.collection('posts').doc(post.id.toString()).set({
 					id: post.id,
 					type: post.type,
 					slots: post.slots,
@@ -75,10 +75,11 @@ export const actions = {
 					description: post.description,
 					user: user_id,
 					display_name: display_name,
-					post_date: post_date
+					post_date: post_date,
+					post_type: post.postType
 				});
 			} else if(post.postType === "planets") {
-				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
+				let response = await db.collection('posts').doc(post.id.toString()).set({
 					id: post.id,
 					type: post.type,
 					galaxy: post.galaxy,
@@ -91,10 +92,11 @@ export const actions = {
 					description: post.description,
 					user: user_id,
 					display_name: display_name,
-					post_date: post_date
+					post_date: post_date,
+					post_type: post.postType
 				});
 			} else if(post.postType === "ships") {
-				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
+				let response = await db.collection('posts').doc(post.id.toString()).set({
 					id: post.id,
 					type: post.type,
 					galaxy: post.galaxy,
@@ -102,7 +104,8 @@ export const actions = {
 					image_url: imageURL,
 					user: user_id,
 					display_name: display_name,
-					post_date: post_date
+					post_date: post_date,
+					post_type: post.postType
 				});
 			}
 

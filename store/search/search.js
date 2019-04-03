@@ -29,7 +29,7 @@ export const mutations = {
 export const actions = {
 	async submitSearch({dispatch, commit}, searchData) {
 		if(searchData.searchType == "multitools") {
-			let snapshot = await db.collection('posts/multitools/' + searchData.type).get()
+			let snapshot = await db.collection('posts').get()
 			.then(snapshot => {
 				let postArray = [] 
 				snapshot.forEach(doc => {
@@ -46,7 +46,7 @@ export const actions = {
 			})
 
 		} else if(searchData.searchType == "ships") {
-			let snapshot = await db.collection('posts/multitools/' + searchData.type).get()
+			let snapshot = await db.collection('posts').get()
 			.then(snapshot => {
 				let postArray = [] 
 				snapshot.forEach(doc => {
@@ -64,7 +64,7 @@ export const actions = {
 			})
 
 		} else if(searchData.searchType == "planets") {
-			let snapshot = await db.collection('posts/multitools/' + searchData.biome).get()
+			let snapshot = await db.collection('posts').get()
 			.then(snapshot => {
 				let postArray = [] 
 				snapshot.forEach(doc => {
