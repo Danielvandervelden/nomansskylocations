@@ -4,7 +4,7 @@
 			<span class="label">Click here to upload an image!</span>
 			<input @change="changeLabel($event)" type="file">
 		</div>
-		<nms-button @click.native="uploadFile" color="red">Upload!</nms-button>
+		<nms-button type="submit" @click.native.prevent="uploadFile($event)" color="red">Upload!</nms-button>
 	</div>
 </template>
 
@@ -27,10 +27,11 @@
 					this.createMessage("Filesize is too big. Must be less than 1MB!", document.getElementById('multitool_image_upload'));
 				}
 			},
-			uploadFile() {
+			uploadFile(e) {
+				e.target.disabled = true;
 				if(this.filled.image !== '') {
-					document.querySelector('body').classList.add('loading');
-					this.$store.dispatch('newpost/new-post/uploadFile', this.filled.image);
+					this.loading(true);
+					this.$store.dispatch('post/new-post/uploadFile', this.filled.image);
 				}
 			}
 		}

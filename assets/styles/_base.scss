@@ -403,6 +403,12 @@ h6 {
   }
 }
 
+button:disabled {
+	background-color: #c9c9c9 !important;
+	cursor: not-allowed !important;
+	border: 0 !important
+}
+
 .inline-button {
   display: inline-block !important;
 }
