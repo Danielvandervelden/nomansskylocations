@@ -333,7 +333,7 @@
 			uploadFile() {
 				if (this.filled.image !== '') {
 					document.querySelector('body').classList.add('loading');
-					this.$store.dispatch('newpost/new-post/uploadFile', this.filled.image);
+					this.$store.dispatch('post/new-post/uploadFile', this.filled.image);
 				}
 			},
 			submitPost() {
@@ -348,8 +348,8 @@
 					this.evaluateInput(this.filled.fauna === null, "planet_fauna", "Please enter the planet's fauna") &&
 					this.evaluateInput(this.filled.glyphs === null, "glyph__selector", "Please enter the portal glyphs")
 				) {
-					document.querySelector('body').classList.add('loading');
-					this.$store.dispatch('newpost/new-post/submitNewPost', this.filled);
+					this.loading(true);
+					this.$store.dispatch('post/new-post/submitNewPost', this.filled);
 				}
 			}
 		}

@@ -55,9 +55,11 @@ export const actions = {
 
 	async submitNewPost({commit, dispatch}, post) {
 		if (this.$cookies.get('user') !== undefined) {
+			let imageURL = await storage.ref(`uploads/${post.image.id}`).getDownloadURL().then(url => url);
 			let user_id = this.$cookies.get('user').user_id;
+			let display_name = this.$cookies.get('user').display_name;
+			let post_date = new Date();
 			post.id = (+new Date() * Math.random()).toFixed(); 
-			console.log(post);
 			if(post.postType === "multitools") {
 				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
 					id: post.id,
@@ -66,12 +68,14 @@ export const actions = {
 					class: post.rank,
 					galaxy: post.galaxy,
 					glyphs: post.glyphs,
-					image_id: post.image.id,
+					image_url: imageURL,
 					location: post.location,
 					planet: post.planet,
 					coords: post.coords,
 					description: post.description,
-					user: user_id
+					user: user_id,
+					display_name: display_name,
+					post_date: post_date
 				});
 			} else if(post.postType === "planets") {
 				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
@@ -79,13 +83,15 @@ export const actions = {
 					type: post.type,
 					galaxy: post.galaxy,
 					glyphs: post.glyphs,
-					image_id: post.image.id,
+					image_url: imageURL,
 					planet: post.planet,
 					weather: post.weather,
 					flora: post.flora,
 					fauna: post.fauna,
 					description: post.description,
-					user: user_id
+					user: user_id,
+					display_name: display_name,
+					post_date: post_date
 				});
 			} else if(post.postType === "ships") {
 				let response = await db.collection('posts/' + post.postType + '/' + post.type + '/').doc(post.id.toString()).set({
@@ -93,8 +99,10 @@ export const actions = {
 					type: post.type,
 					galaxy: post.galaxy,
 					glyphs: post.glyphs,
-					image_id: post.image.id,
-					user: user_id
+					image_url: imageURL,
+					user: user_id,
+					display_name: display_name,
+					post_date: post_date
 				});
 			}
 

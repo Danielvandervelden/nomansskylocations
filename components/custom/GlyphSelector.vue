@@ -25,7 +25,7 @@
 		},
 		computed: {
 			getGlyphs() {
-				return this.$store.getters['newpost/new-post/getGlyphs'];
+				return this.$store.getters['post/new-post/getGlyphs'];
 			}
 		}
 	}

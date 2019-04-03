@@ -55,12 +55,6 @@
 					this.filled.image.id = +new Date() + this.filled.image.name.replace(/\s/g,'-');
 				}
 			},
-			uploadFile() {
-				if(this.filled.image !== '') {
-					document.querySelector('body').classList.add('loading');
-					this.$store.dispatch('newpost/new-post/uploadFile', this.filled.image);
-				}
-			},
 			submitPost() {
 				if(
 					this.evaluateInput(this.filled.image === null, "multitool_image_upload", "Please upload an image before submitting") &&
@@ -73,8 +67,8 @@
 					this.evaluateInput(this.filled.location === "planet" && this.filled.planet === null, "planet", "Please enter a planet") &&
 					this.evaluateInput(this.filled.location === "planet" && this.filled.coords === null, "coords", "Please enter the Galactic Coordinates")
 				) {
-					document.querySelector('body').classList.add('loading');
-					this.$store.dispatch('newpost/new-post/submitNewPost', this.filled);
+					this.loading(true);
+					this.$store.dispatch('post/new-post/submitNewPost', this.filled);
 				}
 			}
 		}
