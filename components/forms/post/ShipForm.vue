@@ -19,7 +19,6 @@
 		},
 		data() {
 			return {
-				
 				type: ['Exotic', 'Fighter', 'Explorer', 'Hauler', 'Shuttle'],
 				filled: {
 					postType: 'ships',

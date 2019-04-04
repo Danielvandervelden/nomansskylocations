@@ -15,7 +15,6 @@
 		},
 		computed: {
 			getSearchResults() {
-				console.log(this.$store.getters['search/search/getResults'].results);
 				return this.$store.getters['search/search/getResults'];
 			}
 		}

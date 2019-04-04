@@ -15,10 +15,12 @@ export const mutations = {
 }
 
 export const actions = {
-	async fetchPostData({commit, dispatch}, postID) {
-		let response = await db.collection('users').get()
+	async fetchPostData({commit, dispatch}, {category, type, id}) {
+		let response = db.collection(`posts/${category}/${type}/${id}`)
 		.then(snapshot => {
-			console.log(snapshot);
+			snapshot.forEach(doc => {
+				console.log(doc);
+			})
 		})
 	}
 }

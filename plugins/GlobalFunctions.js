@@ -60,6 +60,11 @@ Vue.mixin({
 			} else {
 				console.log("Pass a status you moron");
 			}
+		},
+
+		generateID() {
+			const chars = [..."abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"];
+			return [...Array(25)].map(i=>chars[Math.random()*chars.length|0]).join``;
 		}
 	}
 })

@@ -17,7 +17,7 @@
 			}
 		},
 		mounted() {
-			this.$store.dispatch('post/single-post/fetchPostData', this.$route.params.id);
+			this.$store.dispatch('post/single-post/fetchPostData', {category: this.$route.params.category, type: this.$route.params.type, id: this.$route.params.id});
 		}
 	}
 </script>

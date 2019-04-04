@@ -59,10 +59,10 @@ export const actions = {
 			let user_id = this.$cookies.get('user').user_id;
 			let display_name = this.$cookies.get('user').display_name;
 			let post_date = new Date();
-			post.id = (+new Date() * Math.random()).toFixed(); 
+			let id = this._vm.generateID();
 			if(post.postType === "multitools") {
-				let response = await db.collection('posts').doc(post.id.toString()).set({
-					id: post.id,
+				let response = await db.collection(`posts/${post.postType}/${post.type}`).doc(id.toString()).set({
+					id: id,
 					type: post.type,
 					slots: post.slots,
 					class: post.rank,
@@ -73,14 +73,14 @@ export const actions = {
 					planet: post.planet,
 					coords: post.coords,
 					description: post.description,
-					user: user_id,
+					user_id: user_id,
 					display_name: display_name,
 					post_date: post_date,
 					post_type: post.postType
 				});
 			} else if(post.postType === "planets") {
-				let response = await db.collection('posts').doc(post.id.toString()).set({
-					id: post.id,
+				let response = await db.collection(`posts/${post.postType}/${post.type}`).doc(id.toString()).set({
+					id: id,
 					type: post.type,
 					galaxy: post.galaxy,
 					glyphs: post.glyphs,
@@ -90,26 +90,26 @@ export const actions = {
 					flora: post.flora,
 					fauna: post.fauna,
 					description: post.description,
-					user: user_id,
+					user_id: user_id,
 					display_name: display_name,
 					post_date: post_date,
 					post_type: post.postType
 				});
 			} else if(post.postType === "ships") {
-				let response = await db.collection('posts').doc(post.id.toString()).set({
-					id: post.id,
+				let response = await db.collection(`posts/${post.postType}/${post.type}`).doc(id.toString()).set({
+					id: id,
 					type: post.type,
 					galaxy: post.galaxy,
 					glyphs: post.glyphs,
 					image_url: imageURL,
-					user: user_id,
+					user_id: user_id,
 					display_name: display_name,
 					post_date: post_date,
 					post_type: post.postType
 				});
 			}
 
-			dispatch('addPostToUser', {post_id: post.id, user_id: user_id});
+			dispatch('addPostToUser', {post_id: id, user_id: user_id});
 			commit('postSuccessful');
 		} else {
 			this.$router.push('/login');
