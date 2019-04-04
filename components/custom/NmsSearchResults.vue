@@ -80,6 +80,7 @@
 				font-size: 0;
 				transition: all .3s ease-in-out;
 				background-size: cover;
+				background-position: center center;
 				min-height: 200px;
 			}
 		}
