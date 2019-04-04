@@ -1,6 +1,6 @@
 <template>
 	<div class="nms-search-results__inner">
-		<nuxt-link :to="'/post/' + result.id" tag="div" v-for="result in data" :key="result.id" class="nms-search-results__single">
+		<nuxt-link :to="`/post/${result.post_type}/${result.type}/${result.id}`" tag="div" v-for="result in data" :key="result.id" class="nms-search-results__single">
 			<div class="nms-search-results__single--wrapper">
 				<figure class="nms-search-results__single--image">
 					<img :src="result.image_url" alt="image">
