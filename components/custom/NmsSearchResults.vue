@@ -7,7 +7,7 @@
 				</figure>
 				<div class="nms-search-results__single--meta">
 					<span class="post-date">Date posted: {{new Date(result.post_date.toDate()).toLocaleDateString()}}</span>
-					<nuxt-link :to="'user/' + result.user_id" class="post-date">By: {{result.display_name}}</nuxt-link>
+					<nuxt-link :to="`/user/${result.user_id}`" class="post-date">By: {{result.display_name}}</nuxt-link>
 				</div>
 			</div>
 		</nuxt-link>
