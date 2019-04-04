@@ -2,8 +2,7 @@
 	<div class="nms-search-results__inner">
 		<nuxt-link :to="`/post/${result.post_type}/${result.type}/${result.id}`" tag="div" v-for="result in data" :key="result.id" class="nms-search-results__single">
 			<div class="nms-search-results__single--wrapper">
-				<figure class="nms-search-results__single--image">
-					<img :src="result.image_url" alt="image">
+				<figure :style="{backgroundImage: `url(${result.image_url})`}" class="nms-search-results__single--image">
 				</figure>
 				<div class="nms-search-results__single--meta">
 					<span class="post-date">Date posted: {{new Date(result.post_date.toDate()).toLocaleDateString()}}</span>
@@ -72,21 +71,16 @@
 
 			&:hover {
 				.nms-search-results__single--image {
-					img {
-						opacity: .8;
-					}
+					opacity: .8
 				}
 			}
 
 			&--image {
 				margin: 0;
 				font-size: 0;
-
-				img {
-					max-width: 100%;
-					width: 100%;
-					transition: all .3s ease-in-out;
-				}
+				transition: all .3s ease-in-out;
+				background-size: cover;
+				min-height: 200px;
 			}
 		}
 	}
