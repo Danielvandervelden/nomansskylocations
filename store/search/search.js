@@ -2,7 +2,7 @@ import { db, storage } from '@/plugins/database/firebase';
 
 export const state = () => ({
 	searchResults: {
-		title: '',
+		title: null,
 		results: []
 	},
 	postData: null
