@@ -37,6 +37,7 @@
 				 :url="`/post/${post[Object.keys(post)].post_type}/${post[Object.keys(post)].type}/${post[Object.keys(post)].id}`"
 				 ></nms-user-post>
 		</div>
+		<nms-button class="margin-top" back="true">Back</nms-button>
 	</div>
 </template>
 
@@ -69,6 +70,7 @@
 	.nms-single-user {
 		@include faded-bg();
 		margin-top: 2rem;
+		margin-bottom: 2rem;
 		padding: 2rem;
 		box-sizing: border-box;
 	}

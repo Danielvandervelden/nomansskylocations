@@ -15,7 +15,7 @@
 			<nms-input v-model="filled.coords" label="Galactic Coordinates" name="coords" kind="text"></nms-input>
 		</div>
 
-		<nms-button @click.native="submitPost" class="nms__form-multitool--submit" color="green">Submit post</nms-button>
+		<nms-button @click.native="submitPost" class="margin-top nms__form-multitool--submit" color="green">Submit post</nms-button>
 	</form>
 </template>
 

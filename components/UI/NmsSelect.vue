@@ -60,11 +60,11 @@
 			})
 			customSelect.addEventListener(this.clickEvent(), (e) => {
 				let allSelects = [...document.querySelectorAll('.nms-select')];
-
+	
 				for(let i=0;i<allSelects.length;i++) {
 					if(allSelects[i] === e.target && !allSelects[i].classList.contains('dropdown-active')) {
 						allSelects[i].classList.add('dropdown-active');
-					} else {
+					} else if(e.target.tagName.toUpperCase() !== "INPUT") {
 						allSelects[i].classList.remove('dropdown-active');
 					}
 				}

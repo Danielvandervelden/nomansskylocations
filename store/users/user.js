@@ -36,7 +36,7 @@ export const getters = {
 	getPlanetPosts: state => {
 		let posts = [];
 		state.userPosts.filter(post => {
-			if(post[Object.keys(post)].post_type == 'planet') {
+			if(post[Object.keys(post)].post_type == 'planets') {
 				posts.push(post);
 			}
 		})

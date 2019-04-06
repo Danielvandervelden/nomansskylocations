@@ -10,7 +10,7 @@
 		<nms-input name="planet_fauna" v-model="filled.fauna" kind="text" label="What's the Fauna status?"></nms-input>
 		<nms-input v-model="filled.description" kind="textarea" label="What's so awesome about this planet?"></nms-input>
 		<glyph-selector v-model="filled.glyphs" label="Enter the portal glyph combination"></glyph-selector>
-		<nms-button @click.native="submitPost" class="nms__form-planet--submit" color="green">Submit post</nms-button>
+		<nms-button @click.native="submitPost" class="margin-top nms__form-planet--submit" color="green">Submit post</nms-button>
 	</form>
 </template>
 

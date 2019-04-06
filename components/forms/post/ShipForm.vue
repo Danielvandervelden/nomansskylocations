@@ -5,7 +5,7 @@
 		<nms-select v-model="filled.type" name="ship_type" label="What type of ship is it??" :options="type"></nms-select>
 		<nms-input v-model="filled.description" kind="textarea" label="Enter a description for finding it"></nms-input>
 		<glyph-selector v-model="filled.glyphs" label="Enter the portal glyph combination"></glyph-selector>
-		<nms-button @click.native="submitPost" class="nms__form-multitool--submit" color="green">Submit post</nms-button>
+		<nms-button @click.native="submitPost" class="margin-top nms__form-multitool--submit" color="green">Submit post</nms-button>
 	</form>
 </template>
 
