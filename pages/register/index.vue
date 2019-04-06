@@ -8,7 +8,7 @@
 				<div class="nms-register">
 					<h4>Register an account</h4>
 					<form method="POST">
-						<nms-input class="display-name" v-model="user.displayName" kind="text" placeholder="Enter your chosen display name"></nms-input>
+						<nms-input class="display-name" v-model="user.display_name" kind="text" placeholder="Enter your chosen display name"></nms-input>
 						<nms-input class="email" v-model="user.email" kind="email" placeholder="Enter your email"></nms-input>
 						<nms-input class="password" v-model="user.password" kind="password" placeholder="Enter a password"></nms-input>
 						<nms-input class="password" v-model="user.confirmedPassword" kind="password" placeholder="Please confirm your password"></nms-input>
@@ -26,7 +26,7 @@
 		data() {
 			return {
 				user: {
-					displayName: '',
+					display_name: '',
 					email: '',
 					password: '',
 					confirmedPassword: '',

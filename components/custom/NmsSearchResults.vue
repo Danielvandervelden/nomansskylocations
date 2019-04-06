@@ -32,6 +32,7 @@
 
 		&__single {
 			flex: 0 1 49%;
+			margin-bottom: 2%;
 			cursor: pointer;
 			transition: all .3s ease-in-out;
 

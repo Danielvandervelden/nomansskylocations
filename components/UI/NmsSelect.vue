@@ -59,10 +59,14 @@
 				})
 			})
 			customSelect.addEventListener(this.clickEvent(), (e) => {
-				if(!e.target.classList.contains('dropdown-active')) {
-					e.target.classList.add('dropdown-active');
-				} else {
-					e.target.classList.remove('dropdown-active');
+				let allSelects = [...document.querySelectorAll('.nms-select')];
+
+				for(let i=0;i<allSelects.length;i++) {
+					if(allSelects[i] === e.target && !allSelects[i].classList.contains('dropdown-active')) {
+						allSelects[i].classList.add('dropdown-active');
+					} else {
+						allSelects[i].classList.remove('dropdown-active');
+					}
 				}
 			})
 		},

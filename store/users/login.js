@@ -68,7 +68,7 @@ export const actions = {
 	async fetchUserMeta({commit}, userData) {
 		let userMeta = await db.collection('users').doc(userData.uid).get()
 		.then(doc => {
-			userData.display_name = doc.data().displayName;
+			userData.display_name = doc.data().display_name;
 			userData.posts = doc.data().posts;
 			commit('loginSetCookiesAndRedirect', userData);
 			commit('setLoginState', userData);

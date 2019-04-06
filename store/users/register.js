@@ -40,7 +40,7 @@ export const actions = {
 		auth.createUserWithEmailAndPassword(userData.email, userData.password)
 		.then(res => {
 			db.collection('users').doc(res.user.uid).set({
-				displayName: userData.displayName,
+				display_name: userData.display_name,
 				email: userData.email,
 				user_id: res.user.uid,
 				posts: []
@@ -63,9 +63,9 @@ export const actions = {
 		const users = db.collection("users");
 
 		const snapshot = await users.get();
-		const allDisplayNames = snapshot.docs.map(doc => doc.data().displayName);
+		const allDisplayNames = snapshot.docs.map(doc => doc.data().display_name);
 		
-		if(allDisplayNames.includes(userData.displayName)) {
+		if(allDisplayNames.includes(userData.display_name)) {
 			return true
 		} else {
 			return false
