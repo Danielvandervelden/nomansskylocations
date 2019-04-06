@@ -17,7 +17,7 @@
 		data() {
 			return {
 				filled: {
-					searchType: "planets",
+					search_type: "planets",
 					galaxy: null,
 					type: null,
 					weather: null,
@@ -314,7 +314,7 @@
 			submitSearch() {
 				if(
 					this.evaluateInput(this.filled.galaxy === null, "galaxy_select", "Please select a galaxy") &&
-					this.evaluateInput(this.filled.type === null, "multitool_type", "Please fill in a multitool type")
+					this.evaluateInput(this.filled.type === null, "planet_type", "Please fill in a multitool type")
 				) {
 					this.loading(true);
 					this.$store.dispatch('search/search/submitSearch', this.filled);

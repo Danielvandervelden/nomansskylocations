@@ -42,6 +42,7 @@ export const actions = {
 			db.collection('users').doc(res.user.uid).set({
 				displayName: userData.displayName,
 				email: userData.email,
+				user_id: res.user.uid,
 				posts: []
 			})
 			commit("registerSuccess");
@@ -65,10 +66,8 @@ export const actions = {
 		const allDisplayNames = snapshot.docs.map(doc => doc.data().displayName);
 		
 		if(allDisplayNames.includes(userData.displayName)) {
-			console.log(allDisplayNames, userData.displayName);
 			return true
 		} else {
-			console.log(userData.displayName);
 			return false
 		}
 	}

@@ -3,6 +3,7 @@
 		<single-multitool :data="getPostData" v-if="getPostData.post_type == 'multitools'"></single-multitool>
 		<single-ship :data="getPostData" v-else-if="getPostData.post_type == 'ships'"></single-ship>
 		<single-planet :data="getPostData" v-else-if="getPostData.post_type == 'planets'"></single-planet>
+		<nms-button class="margin-top" back="true">Back</nms-button>
 	</div>
 </template>
 

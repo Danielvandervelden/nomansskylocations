@@ -26,6 +26,10 @@ $standardMargin: 1.5rem;
 
 $theme_font: 'Work Sans', 'Helvetica';
 
+$break-mobile: 480px;
+$break-tablet: 768px;
+$break-desktop: 1024px;
+
 /*
   * Page loading
   * * * * * */
@@ -148,7 +152,7 @@ body {
   color: $black;
   background-image: url("~assets/images/nsmbackground.jpg");
   background-attachment: fixed;
-  background-size: 100% 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
   min-width: 100vw;
@@ -445,4 +449,11 @@ button:disabled {
 
 .float-left {
   float: left;
+}
+
+/*
+  * Spacing
+  * * * * * */
+.margin-top {
+	margin-top: 1.5rem;
 }

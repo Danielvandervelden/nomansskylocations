@@ -34,7 +34,7 @@
 				slots: Array.apply(null, {length: 25}).map(Number.call, Number),
 				
 				filled: {
-					postType: 'multitools',
+					post_type: 'multitools',
 					type: null,
 					rank: null,
 					slots: null,

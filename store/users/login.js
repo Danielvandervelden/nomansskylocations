@@ -39,8 +39,6 @@ export const mutations = {
 			token: userData.ra
 		}, {maxAge: 3600, path: '/'})
 
-		console.log(userData);
-		
 		this.$router.push('/');
 	},
 

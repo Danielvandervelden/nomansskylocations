@@ -3,11 +3,11 @@
 		<div v-if="getSearchResults.results.length !== 0" class="nms-search-results__wrapper">
 			<h1 class="nms-search-results__title">{{getSearchResults.title}}</h1>
 			<nms-search-results :data="getSearchResults.results"></nms-search-results>
-			<nms-button class="back-button" back="true">Back</nms-button>
+			<nms-button class="margin-top" back="true">Back</nms-button>
 		</div>
 		<div v-else class="nms-search-results__wrapper">
 			<p>Your search didn't yield any results.. Try again by clicking the back button!</p>	
-			<nms-button back="true">Back</nms-button>		
+			<nms-button class="margin-top" back="true">Back</nms-button>		
 		</div>
 	</div>
 </template>
@@ -39,10 +39,6 @@
 		h1 {
 			font-size: 2rem;
 			text-align: center;
-		}
-
-		.back-button {
-			margin-top: 1.5rem;
 		}
 	}
 </style>

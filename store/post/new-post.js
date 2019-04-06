@@ -36,7 +36,7 @@ export const actions = {
 			post.id = this._vm.generateID();
 			delete post.image;
 			
-			await db.collection(`posts/${post.postType}/${post.type}`).doc(post.id.toString()).set({
+			await db.collection(`posts/${post.post_type}/${post.type}`).doc(post.id.toString()).set({
 				post
 			})
 			.then(res => {

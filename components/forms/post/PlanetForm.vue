@@ -309,7 +309,7 @@
 				'Minimal', 'Active', 'Average', 'Standard', 'Typical', 'Mindful', 'Engaging', 
 				'Frenzied', 'High Security', 'Aggresive', 'Hostile'],
 				filled: {
-					postType: 'planets',
+					post_type: 'planets',
 					image: null,
 					type: null,
 					weather: null,
@@ -328,12 +328,6 @@
 				if (e.target.files[0].size < 1000000) {
 					this.filled.image = e.target.files[0];
 					this.filled.image.id = +new Date() + this.filled.image.name.replace(/\s/g, '-');
-				}
-			},
-			uploadFile() {
-				if (this.filled.image !== '') {
-					document.querySelector('body').classList.add('loading');
-					this.$store.dispatch('post/new-post/uploadFile', this.filled.image);
 				}
 			},
 			submitPost() {

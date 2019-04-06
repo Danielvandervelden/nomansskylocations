@@ -81,4 +81,30 @@
 			font-size: 5rem;
 		}
 	}
+
+	@media screen and (max-width: $break-desktop) {
+		.nms-single-multitool {
+			flex-direction: column;
+
+			&__image {
+				flex: 0 1 100%;
+				text-align: center;
+				margin: 0 auto;
+				max-width: 100%;
+
+				img {
+					max-width: 600px;
+					width: 100%;
+				}
+			}
+
+			&__content {
+				flex: 0 1 100%;
+			}
+
+			&__glyphs {
+				font-size: 6.6vw;
+			}
+		}
+	}
 </style>

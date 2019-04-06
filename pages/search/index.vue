@@ -10,7 +10,7 @@
 				<multitool-form v-if="selected == 'Multitools'"></multitool-form>
 				<ship-form v-if="selected == 'Ships'"></ship-form>
 				<planet-form v-if="selected == 'Planets'"></planet-form>
-				<nms-button class="back-button" back="true">Back</nms-button>
+				<nms-button class="margin-top" back="true">Back</nms-button>
 			</div>
 		</section>
   </div>
@@ -47,9 +47,5 @@
 
 	.content__wrapper {
 		margin-bottom: 10rem;
-	}
-
-	.back-button {
-		margin-top: 1.5rem;
 	}
 </style>

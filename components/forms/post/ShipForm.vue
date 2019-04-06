@@ -21,7 +21,7 @@
 			return {
 				type: ['Exotic', 'Fighter', 'Explorer', 'Hauler', 'Shuttle'],
 				filled: {
-					postType: 'ships',
+					post_type: 'ships',
 					type: null,
 					galaxy: null,
 					glyphs: null,
@@ -37,12 +37,7 @@
 					this.filled.image.id = +new Date() + this.filled.image.name.replace(/\s/g,'-');
 				}
 			},
-			uploadFile() {
-				if(this.filled.image !== '') {
-					document.querySelector('body').classList.add('loading');
-					this.$store.dispatch('post/new-post/uploadFile', this.filled.image);
-				}
-			},submitPost() {
+			submitPost() {
 				if(
 					this.evaluateInput(this.filled.image === null, "ship_image_upload", "Please upload an image before submitting") &&
 					this.evaluateInput(this.filled.galaxy === null, "galaxy_select", "Please select a galaxy") &&

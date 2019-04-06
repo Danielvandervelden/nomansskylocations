@@ -16,7 +16,7 @@
 			return {
 				type: ['Exotic', 'Fighter', 'Explorer', 'Hauler', 'Shuttle'],
 				filled: {
-					searchType: "ships",
+					search_type: "ships",
 					galaxy: null,
 					type: null,
 				}
@@ -26,7 +26,7 @@
 			submitSearch() {
 				if(
 					this.evaluateInput(this.filled.galaxy === null, "galaxy_select", "Please select a galaxy") &&
-					this.evaluateInput(this.filled.type === null, "multitool_type", "Please fill in a multitool type")
+					this.evaluateInput(this.filled.type === null, "ship_type", "Please fill in a multitool type")
 				) {
 					this.loading(true);
 					this.$store.dispatch('search/search/submitSearch', this.filled);

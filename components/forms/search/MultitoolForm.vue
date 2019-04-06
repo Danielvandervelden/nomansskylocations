@@ -21,7 +21,7 @@
 				slots: Array.apply(null, {length: 25}).map(Number.call, Number),
 
 				filled: {
-					searchType: "multitools",
+					search_type: "multitools",
 					type: null,
 					rank: null,
 					slots: null,
@@ -33,9 +33,7 @@
 			submitSearch() {
 				if(
 					this.evaluateInput(this.filled.galaxy === null, "galaxy_select", "Please select a galaxy") &&
-					this.evaluateInput(this.filled.type === null, "multitool_type", "Please fill in a multitool type") &&
-					this.evaluateInput(this.filled.rank === null, "multitool_class", "Please fill in a multitool class") &&
-					this.evaluateInput(this.filled.slots === null, "multitool_slots", "Please fill in the multitool slots")
+					this.evaluateInput(this.filled.type === null, "multitool_type", "Please fill in a multitool type") 
 				) {
 					this.loading(true);
 					this.$store.dispatch('search/search/submitSearch', this.filled);
