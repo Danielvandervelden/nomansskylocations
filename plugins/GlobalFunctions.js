@@ -1,37 +1,42 @@
+/* All right so this file is for functions that are used
+ * often and can save a lot of typing space somewhere.
+ * they are globally injected and thus can be used everywhere
+ *_______________________________________________________*/
+
 import Vue from 'vue';
 
 Vue.mixin({
 	methods: {
 
-		// METHOD FOR DISPLAYING A QUICK MESSAGE
-		createMessage($message, $elementToAppendTo) {
+		// METHOD FOR DISPLAYING A MESSAGE ON INPUT FIELD
+		createMessage(message, elementToAppendTo) {
 			let self = this;
 			let wrapper = document.createElement('div');
 			wrapper.classList.add('nms-message');
 			wrapper.style.transition = 'all .3s ease-in-out';
 
-			let message = document.createTextNode($message);
+			let messageText = document.createTextNode(message);
 
-			wrapper.appendChild(message);
+			wrapper.appendChild(messageText);
 
 			this.fadeIn(wrapper);
-			$elementToAppendTo.appendChild(wrapper);
+			elementToAppendTo.appendChild(wrapper);
 			setTimeout(() => {
 				self.fadeOut(wrapper)
 			}, 5000);
 		},
 
 		// FADE IN AN ELEMENT
-		fadeIn($el) {
-			$el.classList.add('fade-in');
+		fadeIn(el) {
+			el.classList.add('fade-in');
 		},
 
 		// FADEOUT AN ELEMENT
-		fadeOut($el) {
-			$el.classList.add('fade-out');
-			$el.classList.remove('fade-in');
+		fadeOut(el) {
+			el.classList.add('fade-out');
+			el.classList.remove('fade-in');
 			setTimeout(() => {
-				$el.parentNode.removeChild($el)
+				el.parentNode.removeChild(el)
 			}, 1000);
 		},
 
@@ -41,10 +46,10 @@ Vue.mixin({
 		},
 
 		// BASICALLY FORM CHECKING FUNCTION
-		evaluateInput($condition, $elementToScrollToAndAppendMessageTo, $message) {
-			if($condition) {
-				document.getElementById($elementToScrollToAndAppendMessageTo).scrollIntoView({behavior: 'smooth', block: 'center'});
-				this.createMessage($message, document.getElementById($elementToScrollToAndAppendMessageTo));
+		evaluateInput(condition, elementToScrollToAndAppendMessageTo, message) {
+			if(condition) {
+				document.getElementById(elementToScrollToAndAppendMessageTo).scrollIntoView({behavior: 'smooth', block: 'center'});
+				this.createMessage(message, document.getElementById(elementToScrollToAndAppendMessageTo));
 				return false;
 			} else {
 				return true;
@@ -52,19 +57,20 @@ Vue.mixin({
 		},
 
 		// BODY LOADING ON OR OFF
-		loading($status) {
-			if($status) {
+		loading(status) {
+			if(status) {
 				document.querySelector('body').classList.add('loading');
-			} else if(!$status) {
+			} else if(!status) {
 				document.querySelector('body').classList.remove('loading');
 			} else {
 				console.log("Pass a status you moron");
 			}
 		},
 
+		// GENERATE A UNIQUE ID FOR POSTS
 		generateID() {
 			const chars = [..."abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"];
 			return [...Array(25)].map(i=>chars[Math.random()*chars.length|0]).join``;
-		}
+		},
 	}
 })

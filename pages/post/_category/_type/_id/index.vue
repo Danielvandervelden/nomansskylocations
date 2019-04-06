@@ -16,11 +16,6 @@
 			'single-ship': SingleShip,
 			'single-planet': SinglePlanet
 		},
-		data() {
-			return {
-				
-			}
-		},
 		computed: {
 			getPostData() {
 				return this.$store.getters['post/single-post/getPostData'];

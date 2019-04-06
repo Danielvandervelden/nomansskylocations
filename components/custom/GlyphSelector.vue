@@ -5,7 +5,7 @@
 			<input @input="inputHandler($event)" name="glyph-input" class="glyph-input" type="text">
 		</div>
 		<div class="glyph__selector--explanation">
-			<div v-for="(glyph, index) in getGlyphs" :key="index" class="glyph__selector--explanation_single">
+			<div v-for="(glyph, index) in glyphs" :key="index" class="glyph__selector--explanation_single">
 				<div class="glyph-character">{{glyph.glyph}} = </div>
 				<div class="glyph-example">{{glyph.glyph}}</div>
 			</div>
@@ -18,16 +18,33 @@
 		props: [
 			'label'
 		],
+		data() {
+			return {
+				glyphs: [
+					{glyph: '0'},
+					{glyph: '1'},
+					{glyph: '2'},
+					{glyph: '3'},
+					{glyph: '4'},
+					{glyph: '5'},
+					{glyph: '6'},
+					{glyph: '7'},
+					{glyph: '8'},
+					{glyph: '9'},
+					{glyph: 'A'},
+					{glyph: 'B'},
+					{glyph: 'C'},
+					{glyph: 'D'},
+					{glyph: 'E'},
+					{glyph: 'F'},
+				]
+			}
+		},
 		methods: {
 			inputHandler(e) {
 				this.$emit('input', e.target.value);
 			}
 		},
-		computed: {
-			getGlyphs() {
-				return this.$store.getters['post/new-post/getGlyphs'];
-			}
-		}
 	}
 </script>
 <style scoped lang='scss'>
