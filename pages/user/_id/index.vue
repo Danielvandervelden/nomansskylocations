@@ -6,35 +6,35 @@
 			<h3>Multitools:</h3>
 				<nms-user-post
 				 v-for="post in getMultitoolPosts" 
-				 :key="post[Object.keys(post)].id"
-				 :type="post[Object.keys(post)].type"
-				 :galaxy="post[Object.keys(post)].galaxy"
-				 :post_date="post[Object.keys(post)].post_date"
-				 :rank="post[Object.keys(post)].rank"
-				 :slots="post[Object.keys(post)].slots"
-				 :image_url="post[Object.keys(post)].image_url"
-				 :url="`/post/${post[Object.keys(post)].post_type}/${post[Object.keys(post)].type}/${post[Object.keys(post)].id}`"
+				 :key="post.id"
+				 :type="post.type"
+				 :galaxy="post.galaxy"
+				 :post_date="post.post_date"
+				 :rank="post.rank"
+				 :slots="post.slots"
+				 :image_url="post.image_url"
+				 :url="`/post/${post.post_type}/${post.type}/${post.id}`"
 				 ></nms-user-post>
 			<h3>Ships:</h3>
 				<nms-user-post
 				 v-for="post in getShipPosts" 
-				 :key="post[Object.keys(post)].id"
-				 :type="post[Object.keys(post)].type"
-				 :galaxy="post[Object.keys(post)].galaxy"
-				 :post_date="post[Object.keys(post)].post_date"
-				 :image_url="post[Object.keys(post)].image_url"
-				 :url="`/post/${post[Object.keys(post)].post_type}/${post[Object.keys(post)].type}/${post[Object.keys(post)].id}`"
+				 :key="post.id"
+				 :type="post.type"
+				 :galaxy="post.galaxy"
+				 :post_date="post.post_date"
+				 :image_url="post.image_url"
+				 :url="`/post/${post.post_type}/${post.type}/${post.id}`"
 				 ></nms-user-post>
 			<h3>Planets:</h3>
 				<nms-user-post
 				 v-for="post in getPlanetPosts" 
-				 :key="post[Object.keys(post)].id"
-				 :type="post[Object.keys(post)].type"
-				 :galaxy="post[Object.keys(post)].galaxy"
-				 :post_date="post[Object.keys(post)].post_date"
-				 :weather="post[Object.keys(post)].weather"
-				 :image_url="post[Object.keys(post)].image_url"
-				 :url="`/post/${post[Object.keys(post)].post_type}/${post[Object.keys(post)].type}/${post[Object.keys(post)].id}`"
+				 :key="post.id"
+				 :type="post.type"
+				 :galaxy="post.galaxy"
+				 :post_date="post.post_date"
+				 :weather="post.weather"
+				 :image_url="post.image_url"
+				 :url="`/post/${post.post_type}/${post.type}/${post.id}`"
 				 ></nms-user-post>
 		</div>
 		<nms-button class="margin-top" back="true">Back</nms-button>

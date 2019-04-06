@@ -16,7 +16,7 @@ export const getters = {
 	getMultitoolPosts: state => {
 		let posts = [];
 		state.userPosts.filter(post => {
-			if(post[Object.keys(post)].post_type == 'multitools') {
+			if(post.post_type == 'multitools') {
 				posts.push(post);
 			}
 		})
@@ -26,7 +26,7 @@ export const getters = {
 	getShipPosts: state => {
 		let posts = [];
 		state.userPosts.filter(post => {
-			if(post[Object.keys(post)].post_type == 'ships') {
+			if(post.post_type == 'ships') {
 				posts.push(post);
 			}
 		})
@@ -36,7 +36,7 @@ export const getters = {
 	getPlanetPosts: state => {
 		let posts = [];
 		state.userPosts.filter(post => {
-			if(post[Object.keys(post)].post_type == 'planets') {
+			if(post.post_type == 'planets') {
 				posts.push(post);
 			}
 		})

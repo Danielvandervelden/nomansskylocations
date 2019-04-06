@@ -57,17 +57,13 @@ export const actions = {
 
 	addPostToUser({commit, dispatch}, post) {
 		let ref = db.collection('users').doc(post.user_id);
-		let postsArray = []
 		
-		let postToStore = {
-			[post.id]: post
-		}
 		ref.get().then(doc => {
-			if(doc.exists) { postsArray = [...doc.data().posts] }
-
-			postsArray.push(postToStore);
+			let postsArray = [...doc.data().posts];
+			console.log(post);
+			postsArray.push(post);
 			ref.update({
-				posts: postsArray
+				posts: postsArray	
 			})
 		})
 	
