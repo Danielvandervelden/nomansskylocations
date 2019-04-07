@@ -92,7 +92,6 @@ module.exports = {
    ** Build configuration
    */
   build: {
-	publicPath: '/public/',
 	extractCSS: true,
 	babel: {
 		presets: [

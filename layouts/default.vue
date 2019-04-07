@@ -1,17 +1,20 @@
 <template>
  <div class="nms-container">
+	 <nms-navigation></nms-navigation>
+	 <nms-loading-cubes></nms-loading-cubes>
 	 <nuxt />
-	 <div class="sk-folding-cube">
-		<div class="sk-cube1 sk-cube"></div>
-		<div class="sk-cube2 sk-cube"></div>
-		<div class="sk-cube4 sk-cube"></div>
-		<div class="sk-cube3 sk-cube"></div>
-	</div>
  </div>
 </template>
 
 <script>
+import NmsNavigation from '@/components/header/NmsNavigation.vue';
+import NmsLoadingCubes from '@/components/header/NmsLoadingCubes.vue';
+
 export default {
+	components: {
+		'nms-navigation': NmsNavigation,
+		'nms-loading-cubes': NmsLoadingCubes
+	},
 	created() {
 		if(this.$store.getters['users/login/isLoggedIn'] == null) {
 			this.$store.dispatch('users/login/initAuth');

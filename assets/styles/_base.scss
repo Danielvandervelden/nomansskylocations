@@ -24,138 +24,62 @@ $h6size: 1.8rem;
 
 $standardMargin: 1.5rem;
 
-$theme_font: 'Work Sans', 'Helvetica';
+$theme_font: 'Work Sans',
+'Helvetica';
 
 $break-mobile: 480px;
 $break-tablet: 768px;
 $break-desktop: 1024px;
 
 /*
-  * Page loading
-  * * * * * */
-
-body {
-  .sk-folding-cube {
-    display: none;
-  }
-}
-
-body.loading {
-  position: relative;
-  overflow: hidden;
-
-  &:before {
-    content: '';
-    background-color: rgba(255, 255, 255, .7);
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9;
-  }
-
-  .sk-folding-cube {
-    display: block;
-    margin: 20px auto;
-    width: 40px;
-    height: 40px;
-    position: fixed;
-    transform: rotateZ(45deg) translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    z-index: 10;
-  }
-
-  .sk-folding-cube .sk-cube {
-    float: left;
-    width: 50%;
-    height: 50%;
-    position: relative;
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-
-  .sk-folding-cube .sk-cube:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $red;
-    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
-    animation: sk-foldCubeAngle 2.4s infinite linear both;
-    -webkit-transform-origin: 100% 100%;
-    -ms-transform-origin: 100% 100%;
-    transform-origin: 100% 100%;
-  }
-
-  .sk-folding-cube .sk-cube2 {
-    -webkit-transform: scale(1.1) rotateZ(90deg);
-    transform: scale(1.1) rotateZ(90deg);
-  }
-
-  .sk-folding-cube .sk-cube3 {
-    -webkit-transform: scale(1.1) rotateZ(180deg);
-    transform: scale(1.1) rotateZ(180deg);
-  }
-
-  .sk-folding-cube .sk-cube4 {
-    -webkit-transform: scale(1.1) rotateZ(270deg);
-    transform: scale(1.1) rotateZ(270deg);
-  }
-
-  .sk-folding-cube .sk-cube2:before {
-    -webkit-animation-delay: 0.3s;
-    animation-delay: 0.3s;
-  }
-
-  .sk-folding-cube .sk-cube3:before {
-    -webkit-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-  }
-
-  .sk-folding-cube .sk-cube4:before {
-    -webkit-animation-delay: 0.9s;
-    animation-delay: 0.9s;
-  }
-}
-
-/*
   * Page transition
   * * * * * */
 .fade-enter,
 .fade-leave-active {
-  opacity: 0;
-  transform: translateY(-15px);
+	opacity: 0;
+	transform: translateY(-15px);
 
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
 }
 
 /*
   * Typography
   * * * * * */
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-  font-size: 1.6rem;
-  font-family: $theme_font;
-  margin: 0;
-  color: $black;
-  background-image: url("~assets/images/nsmbackground.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
+	font-size: 1.6rem;
+	font-family: $theme_font;
+	margin: 0;
+	color: $black;
+	background-image: url("~assets/images/nsmbackground.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 100vh;
+	min-width: 100vw;
+
+	&.loading {
+		position: relative;
+		overflow: hidden;
+
+		&:before {
+			content: '';
+			background-color: rgba(255, 255, 255, .7);
+			height: 100vh;
+			width: 100vw;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 9;
+		}
+	}
 }
 
 h1,
@@ -164,54 +88,54 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-  padding: 20px 0;
-  color: $headingcolor;
-  font-weight: bold;
+	margin: 0;
+	padding: 20px 0;
+	color: $headingcolor;
+	font-weight: bold;
 }
 
 h1 {
-  font-size: $h1size;
+	font-size: $h1size;
 }
 
 h2 {
-  font-size: $h2size;
+	font-size: $h2size;
 }
 
 h3 {
-  font-size: $h3size;
+	font-size: $h3size;
 }
 
 h4 {
-  font-size: $h4size;
+	font-size: $h4size;
 }
 
 h5 {
-  font-size: $h5size;
+	font-size: $h5size;
 }
 
 h6 {
-  font-size: $h6size;
+	font-size: $h6size;
 }
 
 .grey {
-  color: $grey;
+	color: $grey;
 }
 
 .black {
-  color: $black;
+	color: $black;
 }
 
 .red {
-  color: $red;
+	color: $red;
 }
 
 .pink {
-  color: $pink;
+	color: $pink;
 }
 
 .white {
-  color: $white;
+	color: $white;
 }
 
 @font-face {
@@ -229,95 +153,95 @@ h6 {
   * * * * * */
 
 @keyframes from-top {
-  from {
-    opacity: 0;
-    transform: translateY(-1.5rem);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(-1.5rem);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes from-bottom {
-  from {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(3rem);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes appear {
-  from {
-    opacity: 0;
-  }
+	from {
+		opacity: 0;
+	}
 
-  to {
-    opacity: 1;
-  }
+	to {
+		opacity: 1;
+	}
 }
 
 @keyframes disappear {
-  from {
-    opacity: 1;
-  }
+	from {
+		opacity: 1;
+	}
 
-  to {
-    opacity: 0;
-  }
+	to {
+		opacity: 0;
+	}
 }
 
 @-webkit-keyframes sk-foldCubeAngle {
 
-  0%,
-  10% {
-    -webkit-transform: perspective(140px) rotateX(-180deg);
-    transform: perspective(140px) rotateX(-180deg);
-    opacity: 0;
-  }
+	0%,
+	10% {
+		-webkit-transform: perspective(140px) rotateX(-180deg);
+		transform: perspective(140px) rotateX(-180deg);
+		opacity: 0;
+	}
 
-  25%,
-  75% {
-    -webkit-transform: perspective(140px) rotateX(0deg);
-    transform: perspective(140px) rotateX(0deg);
-    opacity: 1;
-  }
+	25%,
+	75% {
+		-webkit-transform: perspective(140px) rotateX(0deg);
+		transform: perspective(140px) rotateX(0deg);
+		opacity: 1;
+	}
 
-  90%,
-  100% {
-    -webkit-transform: perspective(140px) rotateY(180deg);
-    transform: perspective(140px) rotateY(180deg);
-    opacity: 0;
-  }
+	90%,
+	100% {
+		-webkit-transform: perspective(140px) rotateY(180deg);
+		transform: perspective(140px) rotateY(180deg);
+		opacity: 0;
+	}
 }
 
 @keyframes sk-foldCubeAngle {
 
-  0%,
-  10% {
-    -webkit-transform: perspective(140px) rotateX(-180deg);
-    transform: perspective(140px) rotateX(-180deg);
-    opacity: 0;
-  }
+	0%,
+	10% {
+		-webkit-transform: perspective(140px) rotateX(-180deg);
+		transform: perspective(140px) rotateX(-180deg);
+		opacity: 0;
+	}
 
-  25%,
-  75% {
-    -webkit-transform: perspective(140px) rotateX(0deg);
-    transform: perspective(140px) rotateX(0deg);
-    opacity: 1;
-  }
+	25%,
+	75% {
+		-webkit-transform: perspective(140px) rotateX(0deg);
+		transform: perspective(140px) rotateX(0deg);
+		opacity: 1;
+	}
 
-  90%,
-  100% {
-    -webkit-transform: perspective(140px) rotateY(180deg);
-    transform: perspective(140px) rotateY(180deg);
-    opacity: 0;
-  }
+	90%,
+	100% {
+		-webkit-transform: perspective(140px) rotateY(180deg);
+		transform: perspective(140px) rotateY(180deg);
+		opacity: 0;
+	}
 }
 
 .fade-in {
@@ -333,55 +257,55 @@ h6 {
   * Mixins
   * * * * * */
 @mixin fa-icon($icon, $size, $color) {
-  content: $icon;
-  font-family: 'Font Awesome\ 5 Free';
-  font-weight: 900;
-  font-size: $size;
-  color: $color;
+	content: $icon;
+	font-family: 'Font Awesome\ 5 Free';
+	font-weight: 900;
+	font-size: $size;
+	color: $color;
 }
 
 @mixin container() {
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 0 15px;
-  box-sizing: border-box;
+	max-width: 1170px;
+	margin: 0 auto;
+	padding: 0 15px;
+	box-sizing: border-box;
 }
 
 @mixin full-width-background($color) {
-  position: relative;
+	position: relative;
 
-  &:after {
-    content: '';
-    position: absolute;
-    width: 100vw;
-    height: 100%;
-    top: 0;
-    left: 50%;
-    z-index: -1;
-    transform: translateX(-50%);
-    background-color: $color;
-  }
+	&:after {
+		content: '';
+		position: absolute;
+		width: 100vw;
+		height: 100%;
+		top: 0;
+		left: 50%;
+		z-index: -1;
+		transform: translateX(-50%);
+		background-color: $color;
+	}
 }
 
 @mixin dv-button($color: #FFF, $background: #000, $fontsize :1.6rem, $display: block) {
-  padding: .5rem 1.4rem;
-  border-radius: 4px;
-  color: $color;
-  background-color: $background;
-  border: 0;
-  text-decoration: none;
-  transition: all .3s ease-in-out;
-  font-size: $fontsize;
-  border: 1px solid $background;
-  display: $display;
-  cursor: pointer;
-  text-align: center;
-  font-family: "Work Sans";
+	padding: .5rem 1.4rem;
+	border-radius: 4px;
+	color: $color;
+	background-color: $background;
+	border: 0;
+	text-decoration: none;
+	transition: all .3s ease-in-out;
+	font-size: $fontsize;
+	border: 1px solid $background;
+	display: $display;
+	cursor: pointer;
+	text-align: center;
+	font-family: "Work Sans";
 
-  &:hover {
-    background-color: lighten($background, 15%);
-    border: 1px solid lighten($background, 15%);
-  }
+	&:hover {
+		background-color: lighten($background, 15%);
+		border: 1px solid lighten($background, 15%);
+	}
 }
 
 @mixin faded-bg($color: #FFF) {
@@ -392,19 +316,19 @@ h6 {
   * Buttons
   * * * * * */
 .button {
-  @include dv-button($color: #FFF, $background: $black);
+	@include dv-button($color: #FFF, $background: $black);
 
-  &.red {
-    @include dv-button($color: #FFF, $background: $red);
-  }
+	&.red {
+		@include dv-button($color: #FFF, $background: $red);
+	}
 
-  &.pink {
-    @include dv-button($color: #FFF, $background: $pink);
-  }
+	&.pink {
+		@include dv-button($color: #FFF, $background: $pink);
+	}
 
-  &.green {
-    @include dv-button($color: #FFF, $background: $green);
-  }
+	&.green {
+		@include dv-button($color: #FFF, $background: $green);
+	}
 }
 
 button:disabled {
@@ -414,26 +338,26 @@ button:disabled {
 }
 
 .inline-button {
-  display: inline-block !important;
+	display: inline-block !important;
 }
 
 /*
   * Form styling
   * * * * * */
 .form-control {
-  position: relative;
+	position: relative;
 }
 
 .nms-message {
-  position: absolute;
-  font-size: 1rem;
-  top: -5px;
-  color: #FFF;
-  background-color: $red;
-  width: 100%;
-  border-radius: .5rem .5rem 0 0;
-  padding: 0 .5rem;
-  box-sizing: border-box;
+	position: absolute;
+	font-size: 1rem;
+	top: -5px;
+	color: #FFF;
+	background-color: $red;
+	width: 100%;
+	border-radius: .5rem .5rem 0 0;
+	padding: 0 .5rem;
+	box-sizing: border-box;
 }
 
 .form-group {
@@ -444,11 +368,11 @@ button:disabled {
   * Floating
   * * * * * */
 .float-right {
-  float: right;
+	float: right;
 }
 
 .float-left {
-  float: left;
+	float: left;
 }
 
 /*
