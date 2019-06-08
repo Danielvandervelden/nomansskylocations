@@ -1,16 +1,6 @@
-import {auth, db} from '@/plugins/database/firebase.js';
 /*
 /* State module for registration
 /*_______________________________________________________*/
-
-
-export const state = () => ({
-	
-})
-
-export const getters = {
-	
-}
 
 export const mutations = {
 	registerFail(state, data) {
