@@ -31,32 +31,40 @@ export const actions = {
 			commit("registerFail", {el: ".password", message: "Your passwords do not match!"});
 			return
 		}
+
 		let displayNameExists =  await dispatch('checkIfDisplayNameExists', userData);
 
 		if(displayNameExists === true) {
 			commit("registerFail", {el: ".display-name", message: "This name has already been taken!"});
 			return
 		}
-		auth.createUserWithEmailAndPassword(userData.email, userData.password)
+
+		this.$axios.$post('/api/register/new-user', {
+			display_name: userData.display_name,
+			email: userData.email,
+			password: userData.password
+		})
 		.then(res => {
-			db.collection('users').doc(res.user.uid).set({
+			db.collection('users').doc(res.uid).set({
 				display_name: userData.display_name,
 				email: userData.email,
-				user_id: res.user.uid,
+				user_id: res.uid,
 				posts: []
-			})
+			});
+
 			commit("registerSuccess");
 		})
 		.catch(e => {
-			console.log(e);
-			if(e.code === "auth/weak-password") {
+			this._vm.loading(false);
+
+			if(e.response.data.message === "auth/weak-password") {
 				commit("registerFail", {el: ".password", message: "Password needs to be at least 6 characters"});
 			}
 
-			if(e.code === "auth/email-already-in-use") {
+			if(e.response.data.message === "auth/email-already-in-use") {
 				commit("registerFail", {el: ".email", message: "This email address is already in use"});
 			}
-		});
+		})
 	},
 
 	async checkIfDisplayNameExists(context, userData) {

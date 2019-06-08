@@ -84,7 +84,6 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-	baseURL: "https://nomansskylocations-9e8b5.firebaseio.com/",
 	widthCredentials: false
   },
 
@@ -126,5 +125,5 @@ module.exports = {
   	transition: {
   		name: 'fade',
   		mode: 'out-in'
-  	}
+	},
   }

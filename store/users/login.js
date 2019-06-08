@@ -55,15 +55,19 @@ export const mutations = {
 
 export const actions = {
 	loginUser({dispatch, commit}, userData) {
-		auth.signInWithEmailAndPassword(userData.email, userData.password)
+		this.$axios.$post('/login-user', userData)
 		.then(res => {
-			dispatch('fetchUserMeta', res.user);
+			console.log('Client side');
 		})
-		.catch(e => {
-			if(e.code === "auth/wrong-password" || e.code === "auth/user-not-found") {
-				commit("loginFail", {el: ".login-input", message: "Either your username or password is incorrect!"})
-			}
-		})
+		// auth.signInWithEmailAndPassword(userData.email, userData.password)
+		// .then(res => {
+		// 	dispatch('fetchUserMeta', res.user);
+		// })
+		// .catch(e => {
+		// 	if(e.code === "auth/wrong-password" || e.code === "auth/user-not-found") {
+		// 		commit("loginFail", {el: ".login-input", message: "Either your username or password is incorrect!"})
+		// 	}
+		// })
 	},
 	async fetchUserMeta({commit}, userData) {
 		let userMeta = await db.collection('users').doc(userData.uid).get()

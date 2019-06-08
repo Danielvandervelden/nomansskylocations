@@ -11,24 +11,25 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.4.2",
-    "@babel/runtime": "^7.4.2",
-    "@nuxtjs/axios": "^5.3.6",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "@nuxtjs/axios": "^5.5.4",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/style-resources": "^0.1.2",
-    "cookie-universal-nuxt": "^2.0.14",
-    "core-js": "^3.0.0",
+    "body-parser": "^1.19.0",
+    "cookie-universal-nuxt": "^2.0.16",
+    "core-js": "^3.1.3",
     "cross-env": "^5.2.0",
-    "express": "^4.16.4",
-    "firebase": "^5.9.1",
-    "nuxt": "^2.3.4"
+    "express": "^4.17.1",
+    "firebase": "^5.11.1",
+    "nuxt": "^2.8.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "node-sass": "^4.11.0",
-    "nodemon": "^1.18.9",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.1",
     "sass-loader": "^7.1.0"
   }
 }
