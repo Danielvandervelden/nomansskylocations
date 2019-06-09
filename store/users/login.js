@@ -6,7 +6,8 @@ import { auth, db } from "@/plugins/database/firebase.js";
 
 
 export const state = () => ({
-	token: null,
+	user_id: null,
+	user_email: null,
 	display_name: null
 })
 
@@ -45,6 +46,12 @@ export const mutations = {
 	setLoginState(state, userData) {
 		state.display_name = userData.display_name;
 		state.token = userData.stsTokenManager.accessToken;
+	},
+
+	setLoginStateFromCookies(state, userData) {
+		state.display_name = userData.display_name,
+		state.user_email = userData.user_email,
+		state.user_id = userData.user_id
 	},
 
 	redirectToLogin(state) {
@@ -86,4 +93,9 @@ export const actions = {
 			console.log(e);
 		})
 	},
+	initAuth({commit}) {
+		if(this.$cookies.get('user') && this.$cookies.get('tokens')) {
+			commit('setLoginStateFromCookies', this.$cookies.get('user'));
+		}
+	}
 }

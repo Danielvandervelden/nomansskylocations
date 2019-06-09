@@ -16,7 +16,7 @@ export default {
 		'nms-loading-cubes': NmsLoadingCubes
 	},
 	created() {
-		
+		this.$store.dispatch('users/login/initAuth');
 	}
 }
 </script>
