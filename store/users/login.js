@@ -35,8 +35,8 @@ export const mutations = {
 		}, {maxAge: 3600, path: '/'})
 
 		this.$cookies.set('tokens', {
-			refresh: userData.refreshToken,
-			token: userData.ra
+			refresh: userData.stsTokenManager.refreshToken,
+			token: userData.stsTokenManager.accessToken
 		}, {maxAge: 3600, path: '/'})
 
 		this.$router.push('/');
@@ -44,7 +44,7 @@ export const mutations = {
 
 	setLoginState(state, userData) {
 		state.display_name = userData.display_name;
-		state.token = userData.ra;
+		state.token = userData.stsTokenManager.accessToken;
 	},
 
 	redirectToLogin(state) {
@@ -55,19 +55,24 @@ export const mutations = {
 
 export const actions = {
 	loginUser({dispatch, commit}, userData) {
-		this.$axios.$post('/login-user', userData)
-		.then(res => {
-			console.log('Client side');
+		this.$axios.$post('/api/login/login-user', {
+			email: userData.email,
+			password: userData.password
 		})
-		// auth.signInWithEmailAndPassword(userData.email, userData.password)
-		// .then(res => {
-		// 	dispatch('fetchUserMeta', res.user);
-		// })
-		// .catch(e => {
-		// 	if(e.code === "auth/wrong-password" || e.code === "auth/user-not-found") {
-		// 		commit("loginFail", {el: ".login-input", message: "Either your username or password is incorrect!"})
-		// 	}
-		// })
+		.then(res => {
+			dispatch("fetchUserMeta", res);
+		})
+		.catch(e => {
+			if(e.response.data.message === "auth/wrong-password") {
+				commit("loginFail", {el: ".login-input.password", message: "Password is incorrect"});
+			}
+			if(e.response.data.message === "auth/too-many-requests") {
+				commit("loginFail", {el: ".login-input", message: "You've tried to login too many times. Try again later"});
+			}
+			if(e.response.data.message === "auth/user-not-found") {
+				commit("loginFail", {el: ".login-input.email", message: "Email address not found"});
+			}
+		})
 	},
 	async fetchUserMeta({commit}, userData) {
 		let userMeta = await db.collection('users').doc(userData.uid).get()
@@ -81,24 +86,4 @@ export const actions = {
 			console.log(e);
 		})
 	},
-
-	initAuth(context) { 
-		let userData = {};
-
-		let user = this.$cookies.get('user');
-		let tokens = this.$cookies.get('tokens');
-		if(user !== undefined && tokens !== undefined) {
-			userData.display_name = user.display_name;
-			userData.ra = user.token;
-			context.commit('setLoginState', userData);
-		}
-	},
-
-	checkIfLoggedIn({commit}) {
-		let user = this.$cookies.get('user');
-		let tokens = this.$cookies.get('tokens');
-		if(user === undefined && tokens === undefined) {
-			commit('redirectToLogin');
-		}
-	}
 }

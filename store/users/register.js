@@ -1,3 +1,5 @@
+import { db } from "@/plugins/database/firebase.js";
+
 /*
 /* State module for registration
 /*_______________________________________________________*/
