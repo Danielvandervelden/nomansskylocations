@@ -57,6 +57,14 @@ export const mutations = {
 	redirectToLogin(state) {
 		this._vm.loading(false);
 		this.$router.push('/login');
+	},
+
+	logoutUser(state) {
+		state.user_id = null;
+		state.user_email = null;
+		state.display_name = null;
+
+		this.$cookies.removeAll();
 	}
 }
 
@@ -96,6 +104,12 @@ export const actions = {
 	initAuth({commit}) {
 		if(this.$cookies.get('user') && this.$cookies.get('tokens')) {
 			commit('setLoginStateFromCookies', this.$cookies.get('user'));
+		}
+	},
+	checkAuth({commit}) {
+		if(!this.$cookies.get('user') || !this.$cookies.get('tokens')) {
+			commit('redirectToLogin');
+			commit('logoutUser');
 		}
 	}
 }

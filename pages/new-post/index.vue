@@ -34,9 +34,6 @@
 				selected: null,
 			}
 		},
-		created() {
-			this.$store.dispatch('users/login/checkIfLoggedIn');
-		},
 		mounted() {
 			let observedDiv = document.querySelector('.nms__new-post--form-wrapper > .form');
 			let maxHeightDiv = document.querySelector('.nms__new-post--form-wrapper');
@@ -54,7 +51,12 @@
 
 			observer.observe(observedDiv, config);
 		},
-		layout: 'new-post'
+		layout: 'new-post',
+		beforeRouteEnter(to, from, next) {
+			next(vm => {
+				vm.$store.dispatch('users/login/checkAuth');
+			})
+		}
 	}
 </script>
 <style scoped lang='scss'>
