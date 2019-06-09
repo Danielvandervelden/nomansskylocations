@@ -1,7 +1,7 @@
 <template>
   <div>
   	<div class="title-wrapper">
-  		<h1>NO MANS SKY LOCATIONS</h1>
+  		<h1>{{ getAppTitle }}</h1>
   	</div>
   	<section class="content">
   		<div class="content__wrapper">
@@ -21,13 +21,17 @@ export default {
 	  
   },
   computed: {
-	  getDisplayName() {
-		  return this.$store.getters['users/login/getDisplayName'];
-	  },
+  	getDisplayName() {
+  		return this.$store.getters['users/login/getDisplayName'];
+  	},
 
-	  isLoggedIn() {
-		  return this.$store.getters['users/login/isLoggedIn'];
-	  }
+  	isLoggedIn() {
+  		return this.$store.getters['users/login/isLoggedIn'];
+  	},
+
+  	getAppTitle() {
+  		return this.$store.getters['getAppTitle'];
+  	}
   }
 }
 </script>

@@ -13,7 +13,7 @@
 				<nuxt-link class="nms-navigation__item" tag="a" to="/">Home</nuxt-link>
 				<nuxt-link class="nms-navigation__item" tag="a" to="/search">Search</nuxt-link>
 				<nuxt-link class="nms-navigation__item" tag="a" v-if="isLoggedIn" to="/new-post">Post</nuxt-link>
-				<nuxt-link class="nms-navigation__item" tag="a" v-if="isLoggedIn" to="/user/">Post</nuxt-link>
+				<nuxt-link class="nms-navigation__item" tag="a" v-if="isLoggedIn" :to="`/user/${this.user_id}`">My Profile</nuxt-link>
 			</div>
 		</div>
 	</nav>
@@ -29,7 +29,7 @@
 		},
 		computed: {
 			isLoggedIn() { 
-				return this.$store.getters['user/login/isLoggedIn'];
+				return this.$store.getters['users/login/isLoggedIn'];
 			}
 		},
 		methods: {
@@ -117,6 +117,26 @@
 			z-index: 99;
 			border-radius: 100%;
 			transition: all .3s ease-in-out;
+		}
+
+		&__inner {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			a {
+				display: block;
+				text-decoration: none;
+				color: #FFF;
+				cursor: pointer;
+				font-size: 4rem;
+				transition: all .3s ease-in-out;
+
+				&:hover {
+					color: $green;
+				}
+			}
 		}
 
 		&.active {

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="title-wrapper">
-			<h1>NO MANS SKY LOCATIONS</h1>
+			<h1>{{ getAppTitle }}</h1>
 		</div>
 		<section class="content">
 			<div class="content__wrapper">
@@ -26,6 +26,11 @@
 					email: '',
 					password: ''
 				}
+			}
+		},
+		computed: {
+			getAppTitle() {
+				return this.$store.getters['getAppTitle'];
 			}
 		},
 		methods: {

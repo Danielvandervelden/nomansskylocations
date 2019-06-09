@@ -13,7 +13,7 @@ export const state = () => ({
 
 export const getters = {
 	isLoggedIn: state => {
-		return state.token;
+		return state.display_name !== null ? true : false;
 	},
 	getDisplayName: state => {
 		return state.display_name;
