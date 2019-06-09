@@ -60,7 +60,6 @@ export const actions = {
 		
 		ref.get().then(doc => {
 			let postsArray = [...doc.data().posts];
-			console.log(post);
 			postsArray.push(post);
 			ref.update({
 				posts: postsArray	

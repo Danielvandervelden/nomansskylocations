@@ -10,10 +10,10 @@
 
 		<div class="nms-navigation__wrapper">
 			<div class="nms-navigation__inner">
-				<nuxt-link to="/">Home</nuxt-link>
-				<nuxt-link to="/search">Search</nuxt-link>
-				<nuxt-link v-if="isLoggedIn" to="/new-post">Post</nuxt-link>
-				<nuxt-link v-if="isLoggedIn" to="/user/">Post</nuxt-link>
+				<nuxt-link class="nms-navigation__item" tag="a" to="/">Home</nuxt-link>
+				<nuxt-link class="nms-navigation__item" tag="a" to="/search">Search</nuxt-link>
+				<nuxt-link class="nms-navigation__item" tag="a" v-if="isLoggedIn" to="/new-post">Post</nuxt-link>
+				<nuxt-link class="nms-navigation__item" tag="a" v-if="isLoggedIn" to="/user/">Post</nuxt-link>
 			</div>
 		</div>
 	</nav>
@@ -24,7 +24,7 @@
 		data() {
 			return {
 				aria: false,
-				user_id: null
+				user_id: null,
 			}
 		},
 		computed: {
@@ -34,8 +34,9 @@
 		},
 		methods: {
 			toggleNav(e) {
-				let nav = e.target.closest('.nms-navigation');
-				e.currentTarget.querySelector('button').classList.contains('is-active') ? e.currentTarget.querySelector('button').classList.remove('is-active') : e.currentTarget.querySelector('button').classList.add('is-active')
+				let nav = document.querySelector('nav.nms-navigation');
+				let nav_button = nav.querySelector('button.hamburger');
+				nav_button.classList.contains('is-active') ? nav_button.classList.remove('is-active') : nav_button.classList.add('is-active')
 				nav.classList.contains('active') ? nav.classList.remove('active') : nav.classList.add('active');
 			}
 		},
@@ -44,6 +45,12 @@
 				let user = this.$cookies.get('user');
 				this.user_id = user.user_id;
 			}
+
+			[...document.querySelectorAll('.nms-navigation__item')].forEach(item => {
+				item.addEventListener(this.clickEvent(), (e) => {
+					this.toggleNav();
+				});
+			})
 		}
 	}
 </script>
