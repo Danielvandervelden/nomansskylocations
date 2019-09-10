@@ -135,7 +135,7 @@ module.exports = {
 	},
 
 	server: {
-		port: 3000
-		host: process.env.NODE_ENV === 'production' ? 'nmsdatabase.com' : 'localhost'
+		port: 3000,
+		host: 'localhost'
 	}
 }
