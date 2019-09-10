@@ -7,7 +7,7 @@ module.exports = {
 	 ** Headers of the page
 	 */
 	head: {
-		title: pkg.name,
+		title: "No Man's Sky Database",
 		meta: [{
 				charset: 'utf-8'
 			},
@@ -134,7 +134,7 @@ module.exports = {
 	},
 
 	server: {
-		port: process.env.NODE_ENV === 'production' ? 80 : 8000,
-		host: process.env.NODE_ENV === 'production' ? '167.71.73.18' : 'localhost'
+		port: 3000,
+		host: 'localhost'
 	}
 }
