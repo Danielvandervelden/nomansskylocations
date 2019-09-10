@@ -90,7 +90,8 @@ module.exports = {
 	 ** Axios module configuration
 	 */
 	axios: {
-		widthCredentials: false
+		widthCredentials: false,
+		baseURL: 'https://nomansskylocations-9e8b5.firebaseio.com'
 	},
 
 	/*
