@@ -6,17 +6,21 @@ import { auth, db } from "@/plugins/database/firebase.js";
 
 
 export const state = () => ({
-	user_id: null,
-	user_email: null,
-	display_name: null
+	user: {
+		user_id: null,
+		token: null,
+		user_email: null,
+		display_name: null,
+		isAdmin: false
+	}
 })
 
 export const getters = {
 	isLoggedIn: state => {
-		return state.display_name !== null ? true : false;
+		return state.user.display_name !== null ? true : false;
 	},
-	getDisplayName: state => {
-		return state.display_name;
+	getUser: state => {
+		return state.user;
 	}
 }
 
@@ -44,14 +48,20 @@ export const mutations = {
 	},
 
 	setLoginState(state, userData) {
-		state.display_name = userData.display_name;
-		state.token = userData.stsTokenManager.accessToken;
+		state.user.display_name = userData.display_name;
+		state.user.token = userData.stsTokenManager.accessToken;
+		state.user.user_id = userData.uid;
+		state.user.user_email = userData.email;
+		state.user.isAdmin = userData.isAdmin;
+
 	},
 
 	setLoginStateFromCookies(state, userData) {
-		state.display_name = userData.display_name,
-		state.user_email = userData.user_email,
-		state.user_id = userData.user_id
+		state.user.display_name = userData.display_name,
+		state.user.user_email = userData.user_email,
+		state.user.user_id = userData.user_id
+
+		console.log('setting login state from cookies');
 	},
 
 	redirectToLogin(state) {
@@ -60,11 +70,14 @@ export const mutations = {
 	},
 
 	logoutUser(state) {
-		state.user_id = null;
-		state.user_email = null;
-		state.display_name = null;
+		state.user.user_id = null;
+		state.user.user_email = null;
+		state.user.display_name = null;
 
 		this.$cookies.removeAll();
+
+		this._vm.loading(false);
+		this.$router.push('/');
 	}
 }
 
@@ -94,6 +107,7 @@ export const actions = {
 		.then(doc => {
 			userData.display_name = doc.data().display_name;
 			userData.posts = doc.data().posts;
+			userData.isAdmin = doc.data().admin;
 			commit('loginSetCookiesAndRedirect', userData);
 			commit('setLoginState', userData);
 		})

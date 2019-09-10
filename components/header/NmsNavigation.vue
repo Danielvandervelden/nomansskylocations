@@ -10,10 +10,11 @@
 
 		<div class="nms-navigation__wrapper">
 			<div class="nms-navigation__inner">
-				<nuxt-link class="nms-navigation__item" tag="a" to="/">Home</nuxt-link>
-				<nuxt-link class="nms-navigation__item" tag="a" to="/search">Search</nuxt-link>
-				<nuxt-link class="nms-navigation__item" tag="a" v-if="isLoggedIn" to="/new-post">Post</nuxt-link>
-				<nuxt-link class="nms-navigation__item" tag="a" v-if="isLoggedIn" :to="`/user/${this.user_id}`">My Profile</nuxt-link>
+				<nuxt-link @click.native="closeNav" class="nms-navigation__item" tag="a" to="/">Home</nuxt-link>
+				<nuxt-link @click.native="closeNav" class="nms-navigation__item" tag="a" to="/search">Search</nuxt-link>
+				<nuxt-link @click.native="closeNav" class="nms-navigation__item" tag="a" v-if="isLoggedIn" to="/new-post">Post</nuxt-link>
+				<nuxt-link @click.native="closeNav" class="nms-navigation__item" tag="a" v-if="isLoggedIn" :to="`/user/${getUser.user_id}`">My Profile</nuxt-link>
+				<a @click="closeNav(); logoutUser();" class="nms-navigation__item" v-if="isLoggedIn">Logout</a>
 			</div>
 		</div>
 	</nav>
@@ -21,15 +22,12 @@
 
 <script>
 	export default {
-		data() {
-			return {
-				aria: false,
-				user_id: null,
-			}
-		},
 		computed: {
 			isLoggedIn() { 
 				return this.$store.getters['users/login/isLoggedIn'];
+			},
+			getUser() {
+				return this.$store.getters['users/login/getUser'];
 			}
 		},
 		methods: {
@@ -38,20 +36,18 @@
 				let nav_button = nav.querySelector('button.hamburger');
 				nav_button.classList.contains('is-active') ? nav_button.classList.remove('is-active') : nav_button.classList.add('is-active')
 				nav.classList.contains('active') ? nav.classList.remove('active') : nav.classList.add('active');
-			}
+			},
+			closeNav(e) {
+				let nav = document.querySelector('nav.nms-navigation');
+				let nav_button = nav.querySelector('button.hamburger');
+				nav_button.classList.remove('is-active');
+				nav.classList.remove('active');
+			},
+			logoutUser() {
+				this.loading(true);
+				this.$store.commit('users/login/logoutUser');
+			},
 		},
-		mounted() {
-			if(this.$cookies.get('user')) {
-				let user = this.$cookies.get('user');
-				this.user_id = user.user_id;
-			}
-
-			[...document.querySelectorAll('.nms-navigation__item')].forEach(item => {
-				item.addEventListener(this.clickEvent(), (e) => {
-					this.toggleNav();
-				});
-			})
-		}
 	}
 </script>
 <style scoped lang='scss'>

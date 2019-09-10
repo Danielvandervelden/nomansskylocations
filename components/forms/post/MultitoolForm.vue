@@ -30,8 +30,8 @@
 		data() {
 			return {
 				type: ['Alien', 'Experimental', 'Rifle', 'Pistol'],
-				rank: ['C', 'B', 'A', 'S'],
-				slots: Array.apply(null, {length: 25}).map(Number.call, Number),
+				rank: ['S', 'A', 'B', 'C'],
+				slots: Array.apply(null, {length: 25}).map(Number.call, Number).reverse(),
 				
 				filled: {
 					post_type: 'multitools',

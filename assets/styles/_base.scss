@@ -287,7 +287,7 @@ h6 {
 	}
 }
 
-@mixin dv-button($color: #FFF, $background: #000, $fontsize :1.6rem, $display: block) {
+@mixin nms-button($color: #FFF, $background: #000, $fontsize :1.6rem, $display: block) {
 	padding: .5rem 1.4rem;
 	border-radius: 4px;
 	color: $color;
@@ -316,18 +316,18 @@ h6 {
   * Buttons
   * * * * * */
 .button {
-	@include dv-button($color: #FFF, $background: $black);
+	@include nms-button($color: #FFF, $background: $black);
 
 	&.red {
-		@include dv-button($color: #FFF, $background: $red);
+		@include nms-button($color: #FFF, $background: $red);
 	}
 
 	&.pink {
-		@include dv-button($color: #FFF, $background: $pink);
+		@include nms-button($color: #FFF, $background: $pink);
 	}
 
 	&.green {
-		@include dv-button($color: #FFF, $background: $green);
+		@include nms-button($color: #FFF, $background: $green);
 	}
 }
 

@@ -41,7 +41,8 @@ export const actions = {
 				display_name: userData.display_name,
 				email: userData.email,
 				user_id: res.uid,
-				posts: []
+				posts: [],
+				admin: false
 			});
 
 			commit("registerSuccess");

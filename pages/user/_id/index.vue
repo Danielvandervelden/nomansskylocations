@@ -15,6 +15,7 @@
 				 :image_url="post.image_url"
 				 :url="`/post/${post.post_type}/${post.type}/${post.id}`"
 				 ></nms-user-post>
+				 <span v-if="getMultitoolPosts.length === 0">This user has no multitool posts yet.</span>
 			<h3>Ships:</h3>
 				<nms-user-post
 				 v-for="post in getShipPosts" 
@@ -25,6 +26,7 @@
 				 :image_url="post.image_url"
 				 :url="`/post/${post.post_type}/${post.type}/${post.id}`"
 				 ></nms-user-post>
+				 <span v-if="getShipPosts.length === 0">This user has no ship posts yet.</span>
 			<h3>Planets:</h3>
 				<nms-user-post
 				 v-for="post in getPlanetPosts" 
@@ -36,6 +38,7 @@
 				 :image_url="post.image_url"
 				 :url="`/post/${post.post_type}/${post.type}/${post.id}`"
 				 ></nms-user-post>
+				 <span v-if="getPlanetPosts.length === 0">This user has no planet posts yet.</span>
 		</div>
 		<nms-button class="margin-top" back="true">Back</nms-button>
 	</div>

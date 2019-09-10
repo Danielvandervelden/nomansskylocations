@@ -2,7 +2,7 @@
 	<div class="form-control">
 		<label v-if="label" :for="name">{{label}}</label>
 		<div :id="name" class="input-textarea-wrapper">
-			<input v-if="checkType" :name="name" class="nms-input" @input="inputHandler($event)" :type="kind" :placeholder="placeholder">
+			<input :autocomplete="autocomplete ? autocomplete : ''" @keypress.enter="$emit('enter')" v-if="checkType" :name="name" class="nms-input" @input="inputHandler($event)" :type="kind" :placeholder="placeholder">
 			<textarea class="nms-textarea" v-else-if="kind === 'textarea'" @input="inputHandler($event)" :placeholder="placeholder" />
 		</div>
 	</div>
@@ -15,6 +15,7 @@
 			'placeholder',
 			'label',
 			'name',
+			'autocomplete'
 		],
 		data() {
 			return {
