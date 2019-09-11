@@ -2,7 +2,7 @@
 	<div class="glyph__selector">
 		<label v-if="label" for="glyph-input">{{label}}</label>
 		<div id="glyph__selector" class="glyph-input__wrapper">
-			<input @input="inputHandler($event)" name="glyph-input" class="glyph-input" type="text">
+			<input @keypress="validateKeypress" @input="inputHandler" name="glyph-input" class="glyph-input" type="text">
 		</div>
 		<div class="glyph__selector--explanation">
 			<div v-for="(glyph, index) in glyphs" :key="index" class="glyph__selector--explanation_single">
@@ -42,7 +42,18 @@
 		},
 		methods: {
 			inputHandler(e) {
+				e.target.value = e.target.value.toUpperCase();
 				this.$emit('input', e.target.value);
+			},
+			validateKeypress(e) {
+				if(e.key !== '1' && e.key !== '2' && e.key !== '3' && e.key !== '4' && e.key !== '5' && 
+				e.key !== '6' && e.key !== '7' && e.key !== '8' && e.key !== '9' && e.key !== 'a' && e.key !== 'b' && 
+				e.key !== 'c' && e.key !== 'd' && e.key !== 'e' && e.key !== 'f' && e.key !== 'A' && e.key !== 'B' &&
+				e.key !== 'C' && e.key !== 'D' && e.key !== 'E' && e.key !== 'F') {
+					console.log(e.key)
+					e.preventDefault();
+					return false;
+				}
 			}
 		},
 	}
