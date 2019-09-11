@@ -12,6 +12,9 @@
 						Something didn't go the way it should. Did you get here through the link in the verification email? Or are you poking around in the application? In any case if you believe this to be an error contact me.
 						<nms-button class="margin-top" link="/" color="green">To home</nms-button>
 					</div>
+					<div v-else-if="status === 'auth/invalid-action-code'">
+						The action code is invalid. This can happen if the code is malformed, expired, or has already been used.
+					</div>
 				</div>
 			</div>
 		</section>
@@ -37,11 +40,19 @@
 
 			auth.applyActionCode(oobCode)
 			.then(res => {
-				this.status = true
+				this.status = true;
+				this.startRedirect();
 			})
 			.catch(e => {
-				console.log(e);
+				this.status = e.code;
 			})
+		},
+		methods: {
+			startRedirect() {
+				setTimeout(function() {
+					this.$router.push('/login');
+				}, 5000)
+			}
 		}
 	}
 </script>
