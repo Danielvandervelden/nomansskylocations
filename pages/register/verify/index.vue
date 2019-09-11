@@ -14,6 +14,7 @@
 					</div>
 					<div v-else-if="status === 'auth/invalid-action-code'">
 						The verification link has expired. Please contact the system administrator to get a new one.
+						<nms-button class="margin-top" link="/" color="green">To home</nms-button>
 					</div>
 				</div>
 			</div>
@@ -50,7 +51,7 @@
 		methods: {
 			startRedirect() {
 				setTimeout(function() {
-					this.router.push('/login');
+					$nuxt.$router.push('/login')
 				}, 5000)
 			}
 		}
