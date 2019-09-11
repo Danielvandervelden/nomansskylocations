@@ -63,6 +63,7 @@
 					this.evaluateInput(this.filled.rank === null, "multitool_class", "Please select a multitool class") &&
 					this.evaluateInput(this.filled.slots === null, "multitool_slots", "Please select the amount of slots") &&
 					this.evaluateInput(this.filled.glyphs === null, "glyph__selector", "Please enter the portal glyphs") &&
+					this.evaluateInput(this.filled.glyphs.length !== 12, "glyph__selector", "Please make sure to enter 12 glyphs") &&
 					this.evaluateInput(this.filled.location === null, "nms__form-multitool--location", "Please select a location before submitting") &&
 					this.evaluateInput(this.filled.location === "planet" && this.filled.planet === null, "planet", "Please enter a planet") &&
 					this.evaluateInput(this.filled.location === "planet" && this.filled.coords === null, "coords", "Please enter the Galactic Coordinates")
