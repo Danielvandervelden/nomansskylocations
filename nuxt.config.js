@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const fs = require('fs')
 
 module.exports = {
 	mode: 'universal',
