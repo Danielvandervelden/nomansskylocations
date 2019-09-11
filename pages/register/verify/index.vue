@@ -13,7 +13,7 @@
 						<nms-button class="margin-top" link="/" color="green">To home</nms-button>
 					</div>
 					<div v-else-if="status === 'auth/invalid-action-code'">
-						The action code is invalid. This can happen if the code is malformed, expired, or has already been used.
+						The verification link has expired. Please contact the system administrator to get a new one.
 					</div>
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 		methods: {
 			startRedirect() {
 				setTimeout(function() {
-					this.$router.push('/login');
+					this.router.push('/login');
 				}, 5000)
 			}
 		}
