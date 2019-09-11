@@ -37,7 +37,10 @@
 
 			auth.applyActionCode(oobCode)
 			.then(res => {
-				console.log(res);
+				this.status = true
+			})
+			.catch(e => {
+				console.log(e);
 			})
 		}
 	}
