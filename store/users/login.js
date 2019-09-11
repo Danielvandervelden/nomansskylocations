@@ -80,6 +80,11 @@ export const actions = {
 	async loginUser({dispatch, commit}, userData) {
 
 		let response = await auth.signInWithEmailAndPassword(userData.email, userData.password);
+		
+		if(response.user.emailVerified == false) {
+			commit("loginFail", {el: ".login-input", message: "Please verify your email before logging in!"})
+			return;
+		}
 
 		if(response.code) {
 			if(response.message === "auth/wrong-password") {

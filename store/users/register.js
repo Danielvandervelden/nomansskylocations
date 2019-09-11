@@ -41,7 +41,8 @@ export const actions = {
 				posts: [],
 				admin: false
 			})
-			commit("registerSuccess");
+
+			dispatch('sendEmailVerification');
 		})
 		.catch(e => {
 			switch(e.code) {
@@ -66,5 +67,15 @@ export const actions = {
 		} else {
 			return false
 		}
+	},
+
+	async sendEmailVerification({commit}) {
+		auth.currentUser.sendEmailVerification()
+		.then(e => {
+			commit("registerSuccess")
+		})
+		.catch(e =>  {
+			console.log(e);
+		})
 	}
 }
