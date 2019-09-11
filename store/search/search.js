@@ -18,7 +18,6 @@ export const getters = {
 export const mutations = {
 	setSearchState(state, {postData, searchData}) {
 		this._vm.loading(false);
-		console.log(searchData);
 		state.searchResults.results = postData;
 		state.searchResults.title = `Search results for: ${searchData.type} ${searchData.search_type} in ${searchData.galaxy}`;
 		this.$router.push('/search/results');

@@ -29,7 +29,6 @@ export const actions = {
 	async submitNewPost({commit, dispatch}, post) {
 		// If a user is logged in..
 		if (this.$cookies.get('user') !== undefined) {
-			console.log('submitting new post');
 
 			post.image_url = await storage.ref(`uploads/${post.image.id}`).getDownloadURL().then(url => url);
 			post.user_id = this.$cookies.get('user').user_id;

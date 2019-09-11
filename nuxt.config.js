@@ -34,7 +34,7 @@ module.exports = {
 			{
 				rel: "stylesheet",
 				href: "https://fonts.googleapis.com/css?family=Work+Sans:300,900"
-			}
+			},
 		],
 	},
 
@@ -77,7 +77,11 @@ module.exports = {
 		'@nuxtjs/axios',
 		'@nuxtjs/pwa',
 		'@nuxtjs/style-resources',
-		'cookie-universal-nuxt'
+		'cookie-universal-nuxt',
+		['@nuxtjs/google-analytics', {
+			id: 'UA-147622979-1',
+			dev: false
+		}]
 	],
 
 	/*

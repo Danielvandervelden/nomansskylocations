@@ -18,7 +18,6 @@ export const mutations = {
 
 export const actions = {
 	async fetchPostData({commit, dispatch}, {category, type, id}) {
-		console.log(category, type, id);
 		let response = db.collection(`posts/${category}/${type}/`).doc(`${id}`).get()
 		.then(snapshot => {
 			commit('setPostData', snapshot.data().post)
