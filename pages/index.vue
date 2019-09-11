@@ -9,7 +9,8 @@
   			<nms-button color="red" link="search">Search</nms-button>
   			<nms-button v-if="isLoggedIn !== false" color="green" link="new-post">Post</nms-button>
   			<nms-button v-else color="green" link="login">Login to post</nms-button>
-			<nms-button v-if="isLoggedIn !== false" color="pink" :link="`/user/${getUser.user_id}`">My Profile</nms-button>
+			<nms-button v-if="isLoggedIn !== false" color="black" :link="`/user/${getUser.user_id}`">My Profile</nms-button>
+			<nms-button v-else color="black" link="register">Register</nms-button>
   		</div>
   	</section>
   </div>
