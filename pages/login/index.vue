@@ -35,7 +35,7 @@
 		},
 		methods: {
 			loginUser() {
-				this.loading(true);
+				// this.loading(true);
 				this.$store.dispatch('users/login/loginUser', this.user);
 			}
 		}

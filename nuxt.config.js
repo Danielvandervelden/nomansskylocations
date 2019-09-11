@@ -90,8 +90,8 @@ module.exports = {
 	 ** Axios module configuration
 	 */
 	axios: {
+		baseURL: "https://nomansskylocations-9e8b5.firebaseio.com/",
 		widthCredentials: false,
-		baseURL: 'https://nomansskylocations-9e8b5.firebaseio.com'
 	},
 
 	/*
@@ -117,16 +117,6 @@ module.exports = {
 				}]
 			]
 		},
-		/*
-		 ** You can extend webpack config here
-		 */
-		extend(config, ctx) {
-
-		}
-	},
-
-	env: {
-
 	},
 
 	transition: {

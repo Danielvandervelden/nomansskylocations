@@ -8,7 +8,6 @@ import { auth, db } from "@/plugins/database/firebase.js";
 export const state = () => ({
 	user: {
 		user_id: null,
-		token: null,
 		user_email: null,
 		display_name: null,
 		isAdmin: false
@@ -40,8 +39,7 @@ export const mutations = {
 		}, {maxAge: 3600, path: '/'})
 
 		this.$cookies.set('tokens', {
-			refresh: userData.stsTokenManager.refreshToken,
-			token: userData.stsTokenManager.accessToken
+			refresh: userData.refreshToken,
 		}, {maxAge: 3600, path: '/'})
 
 		this.$router.push('/');
@@ -49,7 +47,6 @@ export const mutations = {
 
 	setLoginState(state, userData) {
 		state.user.display_name = userData.display_name;
-		state.user.token = userData.stsTokenManager.accessToken;
 		state.user.user_id = userData.uid;
 		state.user.user_email = userData.email;
 		state.user.isAdmin = userData.isAdmin;
@@ -60,8 +57,6 @@ export const mutations = {
 		state.user.display_name = userData.display_name,
 		state.user.user_email = userData.user_email,
 		state.user.user_id = userData.user_id
-
-		console.log('setting login state from cookies');
 	},
 
 	redirectToLogin(state) {
@@ -82,29 +77,28 @@ export const mutations = {
 }
 
 export const actions = {
-	loginUser({dispatch, commit}, userData) {
-		this.$axios.$post('/api/login/login-user', {
-			email: userData.email,
-			password: userData.password
-		})
-		.then(res => {
-			dispatch("fetchUserMeta", res);
-		})
-		.catch(e => {
-			if(e.response.data.message === "auth/wrong-password") {
+	async loginUser({dispatch, commit}, userData) {
+
+		let response = await auth.signInWithEmailAndPassword(userData.email, userData.password);
+
+		if(response.code) {
+			if(response.message === "auth/wrong-password") {
 				commit("loginFail", {el: ".login-input.password", message: "Password is incorrect"});
 			}
-			if(e.response.data.message === "auth/too-many-requests") {
+			if(response.message === "auth/too-many-requests") {
 				commit("loginFail", {el: ".login-input", message: "You've tried to login too many times. Try again later"});
 			}
-			if(e.response.data.message === "auth/user-not-found") {
+			if(response.message === "auth/user-not-found") {
 				commit("loginFail", {el: ".login-input.email", message: "Email address not found"});
 			}
-		})
+		} else {
+			dispatch("fetchUserMeta", response.user);	
+		}
+		
 	},
-	async fetchUserMeta({commit}, userData) {
-		let userMeta = await db.collection('users').doc(userData.uid).get()
-		.then(doc => {
+	fetchUserMeta({commit}, userData) {
+		db.collection('users').doc(userData.uid).get()
+		.then(function(doc) {
 			userData.display_name = doc.data().display_name;
 			userData.posts = doc.data().posts;
 			userData.isAdmin = doc.data().admin;

@@ -35,7 +35,7 @@
 		},
 		methods: {
 			registerUser() {
-				this.loading(true);
+				// this.loading(true);
 				this.$store.dispatch('users/register/registerUser', this.user);
 			}
 		},

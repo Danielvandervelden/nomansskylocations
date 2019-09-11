@@ -1,4 +1,4 @@
-import { db } from "@/plugins/database/firebase.js";
+import { auth, db } from "@/plugins/database/firebase.js";
 
 /*
 /* State module for registration
@@ -6,6 +6,7 @@ import { db } from "@/plugins/database/firebase.js";
 
 export const mutations = {
 	registerFail(state, data) {
+		this._vm.loading(false);
 		[...document.querySelectorAll(data.el)].forEach(el => {
 			this._vm.createMessage(data.message, el);
 		})
@@ -31,31 +32,25 @@ export const actions = {
 			return
 		}
 
-		this.$axios.$post('/api/register/new-user', {
-			display_name: userData.display_name,
-			email: userData.email,
-			password: userData.password
-		})
+		auth.createUserWithEmailAndPassword(userData.email, userData.password)
 		.then(res => {
-			db.collection('users').doc(res.uid).set({
+			db.collection('users').doc(res.user.uid).set({
 				display_name: userData.display_name,
 				email: userData.email,
-				user_id: res.uid,
+				user_id: res.user.uid,
 				posts: [],
 				admin: false
-			});
-
+			})
 			commit("registerSuccess");
 		})
 		.catch(e => {
-			this._vm.loading(false);
-
-			if(e.response.data.message === "auth/weak-password") {
-				commit("registerFail", {el: ".password", message: "Password needs to be at least 6 characters"});
-			}
-
-			if(e.response.data.message === "auth/email-already-in-use") {
-				commit("registerFail", {el: ".email", message: "This email address is already in use"});
+			switch(e.code) {
+				case "auth/email-already-in-use":
+					commit("registerFail", {el: ".email", message: e.message});
+					break;
+				case "auth/weak-password":
+					commit("registerFail", {el: ".password", message: e.message});
+					break;
 			}
 		})
 	},
