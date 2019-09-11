@@ -126,6 +126,10 @@ module.exports = {
 
 	server: {
 		port: 3000,
-		host: 'localhost'
+		host: process.env.NODE_ENV === 'production' ? 'nmsdatabase.com' : 'localhost',
+		https: {
+				key: process.env.NODE_ENV === 'production' ? fs.readFileSync('./privkey.pem') : null,
+				cert: process.env.NODE_ENV === 'production' ? fs.readFileSync('./cert.pem') : null
+		}
 	}
 }
