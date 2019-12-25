@@ -23,6 +23,11 @@ module.exports = {
 				content: "This is a Web Application written specifically to find multitools, ships and planets in the popular game No Man's Sky made by Hello Games"
 			},
 			{
+				name: 'image',
+				property: 'og:image',
+				content: '/nmsdatabase.png'
+			},
+			{
 				name: 'viewport',
 				content: 'width=device-width, initial-scale=1'
 			},
@@ -93,6 +98,18 @@ module.exports = {
 			dev: false
 		}]
 	],
+
+	/*
+	 ** PWA module
+	 */
+	pwa: {
+		meta: {
+			name: "No Man's Sky Database",
+			ogSiteName: "No Man's Sky Database",
+			ogTitle: "No Man's Sky Database",
+			ogImage: "/nmsdatabase.png"
+		}
+	},
 
 	/*
 	 ** Global SCSS loader
