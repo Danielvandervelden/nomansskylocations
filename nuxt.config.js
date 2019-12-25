@@ -104,6 +104,7 @@ module.exports = {
 	 */
 	pwa: {
 		meta: {
+			title: "No Man's Sky Database",
 			name: "No Man's Sky Database",
 			ogSiteName: "No Man's Sky Database",
 			ogTitle: "No Man's Sky Database",
