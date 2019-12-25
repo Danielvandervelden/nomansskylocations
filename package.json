@@ -11,25 +11,25 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.6.0",
-    "@babel/runtime": "^7.6.0",
-    "@nuxtjs/axios": "^5.6.0",
-    "@nuxtjs/google-analytics": "^2.2.0",
-    "@nuxtjs/pwa": "^2.6.0",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/runtime": "^7.7.7",
+    "@nuxtjs/axios": "^5.9.0",
+    "@nuxtjs/google-analytics": "^2.2.2",
+    "@nuxtjs/pwa": "^3.0.0-beta.19",
     "@nuxtjs/style-resources": "^1.0.0",
-    "cookie-universal-nuxt": "^2.0.17",
-    "core-js": "^3.2.1",
-    "cross-env": "^5.2.1",
+    "cookie-universal-nuxt": "^2.1.0",
+    "core-js": "^3.6.1",
+    "cross-env": "^6.0.3",
     "express": "^4.17.1",
-    "firebase": "^6.6.0",
-    "nuxt": "^2.9.2"
+    "firebase": "^7.6.1",
+    "nuxt": "^2.11.0"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.6.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "node-sass": "^4.12.0",
-    "nodemon": "^1.19.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
     "sass-loader": "^8.0.0"
   }
 }

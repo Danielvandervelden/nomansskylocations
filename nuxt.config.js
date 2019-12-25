@@ -137,14 +137,5 @@ module.exports = {
 	transition: {
 		name: 'fade',
 		mode: 'out-in'
-	},
-
-	server: {
-		port: 3000,
-		host: process.env.NODE_ENV === 'production' ? 'nmsdatabase.com' : 'localhost',
-		https: {
-				key: process.env.NODE_ENV === 'production' ? fs.readFileSync('./privkey.pem') : null,
-				cert: process.env.NODE_ENV === 'production' ? fs.readFileSync('./cert.pem') : null
-		}
 	}
 }
