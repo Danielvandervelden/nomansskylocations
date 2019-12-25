@@ -1,7 +1,7 @@
 {
   "name": "nomansskylocations-dev",
   "version": "1.0.0",
-  "description": "Nuxt application for searching and posting locations",
+  "description": "This is a Web Application written specifically to find multitools, ships and planets in the popular game No Man's Sky made by Hello Games",
   "author": "Daniel van der Velden",
   "private": true,
   "scripts": {

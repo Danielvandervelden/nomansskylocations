@@ -79,13 +79,14 @@ export const mutations = {
 export const actions = {
 	async loginUser({dispatch, commit}, userData) {
 
+		try {
 		let response = await auth.signInWithEmailAndPassword(userData.email, userData.password);
-		
+
 		if(response.user.emailVerified == false) {
 			commit("loginFail", {el: ".login-input", message: "Please verify your email before logging in!"})
 			return;
 		}
-
+		
 		if(response.code) {
 			if(response.message === "auth/wrong-password") {
 				commit("loginFail", {el: ".login-input.password", message: "Password is incorrect"});
@@ -96,10 +97,16 @@ export const actions = {
 			if(response.message === "auth/user-not-found") {
 				commit("loginFail", {el: ".login-input.email", message: "Email address not found"});
 			}
-		} else {
-			dispatch("fetchUserMeta", response.user);	
+			
+			} else {
+				dispatch("fetchUserMeta", response.user);	
+			}
 		}
-		
+		catch(e) {
+			if(e.code === "auth/invalid-email") {
+				commit("loginFail", {el: ".login-input.email", message: "Invalid email address!"});
+			}
+		}		
 	},
 	fetchUserMeta({commit}, userData) {
 		db.collection('users').doc(userData.uid).get()
@@ -111,7 +118,9 @@ export const actions = {
 			commit('setLoginState', userData);
 		})
 		.catch(e => {
-			console.log(e);
+			if(e.code === "auth/invalid-email") {
+				commit("loginFail", {el: ".login-input.email", message: "Invalid e-mail address"});
+			}
 		})
 	},
 	initAuth({commit}) {

@@ -13,6 +13,16 @@ module.exports = {
 				charset: 'utf-8'
 			},
 			{
+				name: 'title',
+				property: 'og:title',
+				content: "No Man's Sky Database"
+			},
+			{
+				name: 'description',
+				property: 'og:description',
+				content: "This is a Web Application written specifically to find multitools, ships and planets in the popular game No Man's Sky made by Hello Games"
+			},
+			{
 				name: 'viewport',
 				content: 'width=device-width, initial-scale=1'
 			},
